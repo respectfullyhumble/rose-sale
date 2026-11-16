@@ -445,6 +445,7 @@ button,a,summary,.dot{touch-action:manipulation;-webkit-tap-highlight-color:rgba
     <div>
       <img src="img/logo-t.png" alt="Rose Sale ’27" width="413" height="229" loading="lazy" translate="no" style="height:52px;width:auto;display:block;margin-bottom:6px">
       <p>Brought to you by <strong translate="no">Celadon</strong>. Proceeds support the org’s advocacies.</p>
+      <p style="margin-top:8px"><a href="#" id="openLogin" style="color:inherit">Core team login</a></p>
     </div>
   </div>
 </footer>
@@ -464,6 +465,10 @@ button,a,summary,.dot{touch-action:manipulation;-webkit-tap-highlight-color:rgba
 <!-- checkout sheet -->
 <div class="scrim" id="coScrim" hidden></div>
 <div class="sheet" id="coSheet" hidden><div class="paper" id="coPaper" role="dialog" aria-modal="true" aria-label="Checkout"></div></div>
+
+<!-- core team login sheet -->
+<div class="scrim" id="lgScrim" hidden></div>
+<div class="sheet" id="lgSheet" hidden><div class="paper" id="lgPaper" role="dialog" aria-modal="true" aria-label="Core team login"></div></div>
 
 <div class="toast" id="toast" hidden></div>
 <div class="sr" id="live" role="status" aria-live="polite"></div>
@@ -872,7 +877,7 @@ function fly(r,html){
 }
 
 /* ---------- overlay helper ---------- */
-const OVER={cart:["#cartScrim","#cart"],pd:["#pdScrim","#pdSheet"],co:["#coScrim","#coSheet"]};
+const OVER={cart:["#cartScrim","#cart"],pd:["#pdScrim","#pdSheet"],co:["#coScrim","#coSheet"],lg:["#lgScrim","#lgSheet"]};
 let opener=null;
 function show(k,on){
   const [s,p]=OVER[k];
@@ -1087,6 +1092,65 @@ async function placeOrder(){
   return true;
 }
 
+/* ---------- core team login ---------- */
+const sess={get(){try{return JSON.parse(sessionStorage.getItem("rs27-team"))}catch(e){return null}},
+  set(v){try{v?sessionStorage.setItem("rs27-team",JSON.stringify(v)):sessionStorage.removeItem("rs27-team")}catch(e){}}};
+const lg=Object.assign({token:null,name:"",user:"",busy:false},sess.get()||{});
+async function teamCall(body){
+  if(!CONFIG.orderEndpoint)return {ok:false,error:"The order system isn’t connected yet. Paste your /exec URL into CONFIG.orderEndpoint."};
+  const res=await fetch(CONFIG.orderEndpoint,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)});
+  return res.json();
+}
+function teamUI(){$("#openLogin").textContent=lg.token?`Core team · ${(lg.name||lg.user).split(" ")[0]}`:"Core team login";}
+function renderLogin(){
+  const P=$("#lgPaper");
+  if(lg.token){
+    P.innerHTML=`<button class="x" data-close="lg" aria-label="Close">&times;</button><div class="done">
+      <div class="boatbox"><img src="img/boat.jpg" alt="" width="210" height="149"></div><h2>You’re Logged In</h2>
+      <div class="code">${esc(lg.user)}</div>
+      <p>Welcome, <b>${esc(lg.name)}</b>. Your core team login works. Team tools will show up here.</p>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px"><button type="button" class="btn ghost" id="lgOut">Log Out</button><button type="button" class="btn solid" data-close="lg">Back to the Site</button></div></div>`;
+  }else{
+    P.innerHTML=`<button class="x" data-close="lg" aria-label="Close">&times;</button>
+      <form class="co" id="lgForm" novalidate><h2>Core Team Login</h2>
+      <div class="form">
+        <div class="field full"><label for="lgUser">Username</label><input id="lgUser" type="text" autocomplete="username" autocapitalize="off" spellcheck="false" placeholder="ID number + last name…"><span class="hint">Example: 123456Santos</span></div>
+        <div class="field full"><label for="lgPass">Passphrase</label><input id="lgPass" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" placeholder="Word-Word-Word-Word-Word…"></div>
+        <label class="check full"><input type="checkbox" id="lgShow"> <span>Show passphrase</span></label>
+      </div>
+      <p class="err" role="alert"></p>
+      <div class="co-foot"><button type="button" class="btn ghost" data-close="lg">Cancel</button><button type="submit" class="btn solid">Log In</button></div></form>`;
+  }
+  const t=P.querySelector("h2");t.setAttribute("tabindex","-1");
+}
+$("#openLogin").addEventListener("click",e=>{e.preventDefault();renderLogin();show("lg",true);});
+$("#lgPaper").addEventListener("submit",async e=>{
+  e.preventDefault();if(lg.busy)return;
+  const user=$("#lgUser").value.trim(),pass=$("#lgPass").value.trim(),err=$("#lgPaper .err");
+  if(!user||!pass){err.textContent="Enter your username and passphrase.";return;}
+  const btn=$("#lgPaper button[type=submit]");lg.busy=true;btn.disabled=true;btn.textContent="Checking…";
+  let j;
+  try{j=await teamCall({action:"login",username:user,password:pass});}
+  catch(x){j={ok:false,error:"We couldn’t reach the server. Check your connection and try again."};}
+  lg.busy=false;
+  if(!j||!j.ok){err.textContent=(j&&j.error)||"Login failed.";btn.disabled=false;btn.textContent="Log In";$("#lgPass").value="";$("#lgPass").focus();return;}
+  Object.assign(lg,{token:j.token,name:j.name,user:j.username});sess.set({token:lg.token,name:lg.name,user:lg.user});
+  teamUI();renderLogin();$("#lgPaper h2").focus({preventScroll:true});
+});
+$("#lgPaper").addEventListener("click",e=>{
+  if(e.target.closest("#lgOut")){teamCall({action:"logout",token:lg.token}).catch(()=>{});
+    Object.assign(lg,{token:null,name:"",user:""});sess.set(null);teamUI();renderLogin();return;}
+  if(e.target.closest("[data-close]"))show("lg",false);
+});
+$("#lgPaper").addEventListener("change",e=>{if(e.target.id==="lgShow")$("#lgPass").type=e.target.checked?"text":"password";});
+function teamBoot(){ // restore a login after a page reload, if the session is still valid
+  teamUI();if(!lg.token)return;
+  teamCall({action:"session",token:lg.token}).then(j=>{
+    if(j&&j.ok){Object.assign(lg,{name:j.name,user:j.username});sess.set({token:lg.token,name:lg.name,user:lg.user});}
+    else{Object.assign(lg,{token:null,name:"",user:""});sess.set(null);}
+    teamUI();}).catch(()=>{});
+}
+
 /* ---------- step icons ---------- */
 const ICONS={
   rose:head("roses-03",50,46,30)+`<path d="M50,76 L50,96" stroke="${LEAF2}" stroke-width="4" fill="none"/>`,
@@ -1121,7 +1185,7 @@ document.querySelectorAll("[data-ico]").forEach(s=>s.innerHTML=`<g filter="url(#
 })();
 
 /* ---------- boot ---------- */
-renderFilters();renderGrid();renderCart();filterFromHash();
+renderFilters();renderGrid();renderCart();filterFromHash();teamBoot();
 </script>
 
 </body>

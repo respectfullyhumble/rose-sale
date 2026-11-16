@@ -1,2 +1,0 @@
-# rose-sale
-rose sale

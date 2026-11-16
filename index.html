@@ -445,7 +445,7 @@ button,a,summary,.dot{touch-action:manipulation;-webkit-tap-highlight-color:rgba
     <div>
       <img src="img/logo-t.png" alt="Rose Sale ’27" width="413" height="229" loading="lazy" translate="no" style="height:52px;width:auto;display:block;margin-bottom:6px">
       <p>Brought to you by <strong translate="no">Celadon</strong>. Proceeds support the org’s advocacies.</p>
-      <p style="margin-top:8px"><a href="#" id="openLogin" style="color:inherit">Core team login</a></p>
+      <p style="margin-top:8px"><a href="#" id="openLogin" style="color:inherit">Core Team Login</a></p>
     </div>
   </div>
 </footer>
@@ -468,7 +468,7 @@ button,a,summary,.dot{touch-action:manipulation;-webkit-tap-highlight-color:rgba
 
 <!-- core team login sheet -->
 <div class="scrim" id="lgScrim" hidden></div>
-<div class="sheet" id="lgSheet" hidden><div class="paper" id="lgPaper" role="dialog" aria-modal="true" aria-label="Core team login"></div></div>
+<div class="sheet" id="lgSheet" hidden><div class="paper" id="lgPaper" role="dialog" aria-modal="true" aria-label="Core Team Login"></div></div>
 
 <div class="toast" id="toast" hidden></div>
 <div class="sr" id="live" role="status" aria-live="polite"></div>
@@ -1101,7 +1101,7 @@ async function teamCall(body){
   const res=await fetch(CONFIG.orderEndpoint,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)});
   return res.json();
 }
-function teamUI(){$("#openLogin").textContent=lg.token?`Core team · ${(lg.name||lg.user).split(" ")[0]}`:"Core team login";}
+function teamUI(){$("#openLogin").textContent=lg.token?`Core Team · ${(lg.name||lg.user).split(" ")[0]}`:"Core Team Login";}
 function renderLogin(){
   const P=$("#lgPaper");
   if(lg.token){
@@ -1114,9 +1114,9 @@ function renderLogin(){
     P.innerHTML=`<button class="x" data-close="lg" aria-label="Close">&times;</button>
       <form class="co" id="lgForm" novalidate><h2>Core Team Login</h2>
       <div class="form">
-        <div class="field full"><label for="lgUser">Username</label><input id="lgUser" type="text" autocomplete="username" autocapitalize="off" spellcheck="false" placeholder="ID number + last name…"><span class="hint">Example: 123456Santos</span></div>
-        <div class="field full"><label for="lgPass">Passphrase</label><input id="lgPass" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" placeholder="Word-Word-Word-Word-Word…"></div>
-        <label class="check full"><input type="checkbox" id="lgShow"> <span>Show passphrase</span></label>
+        <div class="field full"><label for="lgUser">Username</label><input id="lgUser" type="text" autocomplete="username" autocapitalize="off" spellcheck="false"></div>
+        <div class="field full"><label for="lgPass">Password</label><input id="lgPass" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false"></div>
+        <label class="check full"><input type="checkbox" id="lgShow"> <span>Show password</span></label>
       </div>
       <p class="err" role="alert"></p>
       <div class="co-foot"><button type="button" class="btn ghost" data-close="lg">Cancel</button><button type="submit" class="btn solid">Log In</button></div></form>`;
@@ -1127,13 +1127,13 @@ $("#openLogin").addEventListener("click",e=>{e.preventDefault();renderLogin();sh
 $("#lgPaper").addEventListener("submit",async e=>{
   e.preventDefault();if(lg.busy)return;
   const user=$("#lgUser").value.trim(),pass=$("#lgPass").value.trim(),err=$("#lgPaper .err");
-  if(!user||!pass){err.textContent="Enter your username and passphrase.";return;}
+  if(!user||!pass){err.textContent="Enter your username and password.";return;}
   const btn=$("#lgPaper button[type=submit]");lg.busy=true;btn.disabled=true;btn.textContent="Checking…";
   let j;
   try{j=await teamCall({action:"login",username:user,password:pass});}
   catch(x){j={ok:false,error:"We couldn’t reach the server. Check your connection and try again."};}
   lg.busy=false;
-  if(!j||!j.ok){err.textContent=(j&&j.error)||"Login failed.";btn.disabled=false;btn.textContent="Log In";$("#lgPass").value="";$("#lgPass").focus();return;}
+  if(!j||!j.ok){err.textContent=((j&&j.error)||"Login failed.").replace(/passphrase/gi,"password");btn.disabled=false;btn.textContent="Log In";$("#lgPass").value="";$("#lgPass").focus();return;}
   Object.assign(lg,{token:j.token,name:j.name,user:j.username});sess.set({token:lg.token,name:lg.name,user:lg.user});
   teamUI();renderLogin();$("#lgPaper h2").focus({preventScroll:true});
 });

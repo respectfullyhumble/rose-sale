@@ -1108,7 +1108,7 @@ function renderLogin(){
     P.innerHTML=`<button class="x" data-close="lg" aria-label="Close">&times;</button><div class="done">
       <div class="boatbox"><img src="img/boat.jpg" alt="" width="210" height="149"></div><h2>You’re Logged In</h2>
       <div class="code">${esc(lg.user)}</div>
-      <p>Welcome, <b>${esc(lg.name)}</b>. Your core team login works. Team tools will show up here.</p>
+      <p>Welcome, <b>${esc(lg.name)}</b>!</p>
       <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px"><button type="button" class="btn ghost" id="lgOut">Log Out</button><button type="button" class="btn solid" data-close="lg">Back to the Site</button></div></div>`;
   }else{
     P.innerHTML=`<button class="x" data-close="lg" aria-label="Close">&times;</button>

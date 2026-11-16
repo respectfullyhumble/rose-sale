@@ -1,0 +1,1128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Order handcrafted flowers and gifts from Celadon for Valentine’s week, delivered to classrooms or picked up at the booth.">
+<link rel="icon" href="img/favicon.png">
+<title>Rose Sale ’27</title>
+<meta name="theme-color" content="#f9edcd">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gluten:wght@500;600;700&family=Nunito:wght@400;600;700;800&family=Caveat:wght@600;700&display=swap">
+<style>
+/* Layout: one sunlit paper sheet — banner strip on top, then a shop shelf of hand-drawn cards,
+   cart slides in from the right, checkout opens as a paper sheet over everything. Single warm light look by choice. */
+:root{
+  --paper:#f9edcd;      /* banner ground */
+  --paper-hi:#fdf7e6;   /* card paper */
+  --paper-lo:#f3e1b5;   /* ray shadow */
+  --ink:#79411c;        /* the lettering brown */
+  --text:#4b3222;
+  --muted:#8b6c52;
+  --line:rgba(121,65,28,.2);
+  --rose:#e3889f;
+  --rose-deep:#c85a76;
+  --leaf:#7fae6a;
+  --water:#4f7fbf;
+  --lilac:#a98fd8;
+  --marigold:#f2bf47;
+  --f-display:"Gluten","Chalkboard SE","Comic Sans MS",cursive;
+  --f-body:"Nunito",ui-rounded,"Segoe UI",system-ui,sans-serif;
+  --f-hand:"Caveat","Bradley Hand","Segoe Print",cursive;
+  --r-card:22px 26px 20px 28px / 26px 20px 28px 22px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  background:var(--paper);color:var(--text);font-family:var(--f-body);font-size:16px;line-height:1.55;
+  background-image:repeating-linear-gradient(118deg,transparent 0 90px,rgba(255,252,240,.45) 90px 150px,transparent 150px 260px,rgba(236,212,160,.25) 260px 300px);
+  background-attachment:fixed;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--paper)}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-display);color:var(--ink);font-weight:700;line-height:1.1;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:var(--ink)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px dashed var(--water);outline-offset:3px}
+.hand{font-family:var(--f-hand);font-weight:700}
+
+/* ---------- header ---------- */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(249,237,205,.92);backdrop-filter:blur(6px);border-bottom:1.5px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:20px;padding-block:8px}
+.brand img{height:44px;width:auto;display:block}
+nav.links{display:flex;gap:4px;margin-left:auto}
+nav.links a{text-decoration:none;font-weight:700;color:var(--text);padding:8px 12px;border-radius:999px}
+nav.links a:hover{background:var(--paper-lo)}
+.cart-btn{display:flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper-hi);border:0;border-radius:999px;padding:9px 16px 9px 13px;font-weight:800}
+.cart-btn .count{background:var(--rose);color:#fff;border-radius:999px;min-width:24px;height:24px;display:grid;place-items:center;font-size:13px;padding:0 6px}
+@media (max-width:760px){nav.links{display:none}.cart-btn{margin-left:auto}}
+
+/* ---------- hero: the banner, rebuilt with live text in the middle ---------- */
+.hero{overflow:hidden}
+.hero-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,600px) minmax(0,1fr);align-items:center;min-height:330px}
+.flank{display:block;width:100%;height:360px;object-fit:cover}
+.flank.left{object-position:left center;-webkit-mask-image:radial-gradient(ellipse 78% 52% at 24% 50%,#000 50%,transparent 100%);mask-image:radial-gradient(ellipse 78% 52% at 24% 50%,#000 50%,transparent 100%)}
+.flank.right{object-position:right center;-webkit-mask-image:radial-gradient(ellipse 78% 52% at 76% 50%,#000 50%,transparent 100%);mask-image:radial-gradient(ellipse 78% 52% at 76% 50%,#000 50%,transparent 100%)}
+.hero-mid{text-align:center;padding:30px 16px 34px;min-width:0}
+.hero h1{margin:0}
+.hero h1 img{display:block;width:min(400px,86%);height:auto;margin:0 auto}
+.hero .lede{margin:18px auto 0;font-size:18px;max-width:46ch}
+.hero .ctas{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:22px}
+@media (max-width:860px){
+  .hero-row{grid-template-columns:1fr;min-height:0}
+  .flank.right{display:none}
+  .flank.left{height:170px;object-position:left top;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent);mask-image:linear-gradient(180deg,#000 55%,transparent)}
+  .hero-mid{margin-top:-46px;padding-top:0}
+}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:12px 22px;font-weight:800;text-decoration:none;border:2px solid var(--ink);transition:background-color .15s}
+.btn.solid{background:var(--ink);color:var(--paper-hi)}
+.btn.solid:hover{background:#5c2f12}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--paper-lo)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+
+/* dates band, edged with the banner’s blue water ripples */
+.when{padding-block:22px;background:
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='10'%3E%3Cpath d='M0 6 q12 -7 24 0 t24 0' fill='none' stroke='%234f7fbf' stroke-opacity='.55' stroke-width='1.6'/%3E%3C/svg%3E") repeat-x top left,
+  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='10'%3E%3Cpath d='M0 6 q12 -7 24 0 t24 0' fill='none' stroke='%234f7fbf' stroke-opacity='.55' stroke-width='1.6'/%3E%3C/svg%3E") repeat-x bottom 0 left 24px}
+.when dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px 28px;margin:0}
+.when dl>div{min-width:0}
+.when dt{font-family:var(--f-hand);font-size:26px;color:var(--rose-deep);line-height:1.1}
+.when dd{margin:2px 0 0;font-weight:800;color:var(--ink);font-size:17px;line-height:1.3}
+.when dd small{display:block;font-weight:600;color:var(--muted);font-size:14px}
+@media (max-width:640px){.when dl{grid-template-columns:1fr}}
+
+/* ---------- sections ---------- */
+section{scroll-margin-top:80px}
+.sec{padding-block:44px}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:16px;margin-bottom:24px}
+.sec-head h2{font-size:clamp(28px,3.6vw,40px)}
+.sec-head p{color:var(--muted);max-width:56ch}
+
+.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;list-style:none;padding:0;margin:0;counter-reset:s}
+.steps li{position:relative;padding:20px 20px 22px;border-radius:var(--r-card);background:var(--paper-hi);border:1.5px solid var(--line)}
+.steps li::before{counter-increment:s;content:counter(s);font-family:var(--f-display);font-size:30px;color:var(--rose-deep);display:block;line-height:1;margin-bottom:8px}
+.steps h3{font-size:20px;margin-bottom:6px}
+.steps p{font-size:15px;color:var(--text)}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+
+/* ---------- shop ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:7px 15px;font-weight:700;font-size:15px}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--paper-hi)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:22px}
+.card{display:flex;flex-direction:column;background:var(--paper-hi);border:1.5px solid var(--line);border-radius:var(--r-card);overflow:hidden;transition:border-color .15s;text-align:left;padding:0;color:inherit}
+.card:hover{border-color:var(--ink)}
+.card:hover .go{border-bottom-color:var(--ink)}
+.card .art{aspect-ratio:1/1;max-width:100%;display:block;position:relative}
+.card .art svg{width:100%;height:100%;display:block}
+.card .tag{position:absolute;top:12px;left:12px;background:var(--paper-hi);border:1.5px solid var(--ink);color:var(--ink);border-radius:999px;font-size:12px;font-weight:800;padding:3px 10px;letter-spacing:.02em}
+.card .body{display:flex;flex-direction:column;gap:4px;padding:14px 18px 18px;flex:1;border-top:1.5px dashed var(--line)}
+.card .name{font-family:var(--f-display);font-size:19px;color:var(--ink);line-height:1.15}
+.card .sub{font-size:14px;color:var(--muted)}
+.card .row{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:10px}
+.price{font-family:var(--f-hand);font-size:28px;color:var(--rose-deep);line-height:1}
+.card .go{font-weight:800;font-size:14px;color:var(--ink);border-bottom:2px solid var(--rose)}
+
+/* ---------- delivery & faq ---------- */
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+.panel{background:var(--paper-hi);border:1.5px solid var(--line);border-radius:var(--r-card);padding:22px 24px}
+.panel h3{font-size:22px;margin-bottom:10px}
+.panel p+p{margin-top:10px}
+.venues{columns:2;column-gap:20px;padding:0;margin:12px 0 0;list-style:none;font-size:14.5px}
+.venues li{break-inside:avoid;padding:3px 0}
+.venues b{display:inline-block;min-width:46px;color:var(--ink)}
+@media (max-width:480px){.venues{columns:1}}
+details{border-bottom:1.5px dashed var(--line);padding:14px 2px}
+details:first-of-type{padding-top:0}
+summary{font-weight:800;color:var(--ink);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";font-family:var(--f-display);font-size:22px;line-height:1;transition:transform .2s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{margin-top:8px;font-size:15px}
+
+footer{margin-top:30px;border-top:1.5px solid var(--line);position:relative;overflow:hidden}
+footer .wrap{display:flex;flex-wrap:wrap;gap:24px;justify-content:space-between;align-items:center;padding-block:28px 34px;position:relative;z-index:1}
+footer .lily{position:absolute;right:0;bottom:0;height:100%;width:auto;opacity:.9;-webkit-mask-image:linear-gradient(90deg,transparent,#000 45%);mask-image:linear-gradient(90deg,transparent,#000 45%)}
+footer p{font-size:14px;color:var(--muted)}
+footer strong{color:var(--ink)}
+
+/* ---------- overlays ---------- */
+.scrim{position:fixed;inset:0;background:rgba(75,50,34,.38);z-index:40;animation:fade .2s}
+@keyframes fade{from{opacity:0}}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(420px,100%);background:var(--paper-hi);z-index:41;display:flex;flex-direction:column;
+  padding:calc(18px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) calc(18px + env(safe-area-inset-bottom,0px)) 20px;box-shadow:-20px 0 40px -20px rgba(75,50,34,.5);animation:slide .25s ease-out}
+@keyframes slide{from{transform:translateX(40px);opacity:0}}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.drawer-head h2{font-size:26px}
+.x{border:0;background:transparent;font-size:28px;line-height:1;color:var(--ink);padding:4px 8px;border-radius:10px}
+.x:hover{background:var(--paper-lo)}
+.lines{flex:1;overflow:auto;display:flex;flex-direction:column;gap:12px;padding:4px 2px}
+.line{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:12px;align-items:center;padding-bottom:12px;border-bottom:1.5px dashed var(--line)}
+.line .thumb{width:64px;height:64px;border-radius:14px;overflow:hidden;background:var(--paper)}
+.line .thumb svg{width:100%;height:100%}
+.line .ln{font-weight:800;color:var(--ink);line-height:1.2}
+.line .lc{font-size:13px;color:var(--muted);line-height:1.35}
+.qty{display:flex;align-items:center;gap:6px;margin-top:6px}
+.qty button{width:28px;height:28px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font-weight:800;line-height:1}
+.qty span{min-width:20px;text-align:center;font-weight:800;font-variant-numeric:tabular-nums}
+.line .lp{font-weight:800;font-variant-numeric:tabular-nums;color:var(--text);text-align:right}
+.remove{border:0;background:none;color:var(--muted);font-size:12.5px;text-decoration:underline;padding:0;margin-top:4px}
+.empty{text-align:center;padding:30px 10px;color:var(--muted)}
+.empty img{width:150px;border-radius:50%;margin:0 auto 12px;display:block;-webkit-mask-image:radial-gradient(circle,#000 55%,transparent 72%);mask-image:radial-gradient(circle,#000 55%,transparent 72%)}
+.totals{border-top:2px solid var(--ink);padding-top:14px;margin-top:8px;display:flex;flex-direction:column;gap:12px}
+.totals .t{display:flex;justify-content:space-between;font-weight:800;font-size:18px;color:var(--ink);font-variant-numeric:tabular-nums}
+
+.sheet{position:fixed;inset:0;z-index:42;overflow:auto;display:flex;justify-content:center;align-items:flex-start;
+  padding:calc(24px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+.paper{position:relative;background:var(--paper-hi);width:min(860px,100%);border-radius:var(--r-card);box-shadow:0 30px 60px -30px rgba(75,50,34,.7);animation:rise .25s ease-out}
+@keyframes rise{from{transform:translateY(16px);opacity:0}}
+.paper .x{position:absolute;top:10px;right:10px;z-index:2}
+
+/* product detail */
+.pd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+.pd .art{background:var(--paper);border-radius:22px 0 0 28px;min-height:100%}
+.pd .art svg{width:100%;height:auto;display:block}
+.pd .info{padding:30px 28px 26px;display:flex;flex-direction:column;gap:14px}
+.pd h2{font-size:30px;padding-right:30px}
+.pd .desc{font-size:15.5px}
+.slot{display:flex;flex-direction:column;gap:8px}
+.slot-label{font-weight:800;font-size:14px;color:var(--ink);letter-spacing:.02em}
+.swatches{display:flex;flex-wrap:wrap;gap:8px}
+.sw{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:var(--paper-hi);border-radius:999px;padding:5px 12px 5px 6px;font-size:14px;font-weight:700;color:var(--text)}
+.sw i{width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(75,50,34,.5);display:block}
+.sw[aria-pressed="true"]{border-color:var(--ink);background:var(--paper);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.fixed-note{font-size:14px;background:var(--paper);border-radius:12px;padding:8px 12px}
+.pd .buy{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:6px;padding-top:14px;border-top:1.5px dashed var(--line)}
+@media (max-width:700px){.pd{grid-template-columns:1fr}.pd .art{border-radius:22px 26px 0 0}.pd .art svg{max-height:300px}}
+
+/* checkout */
+.co{padding:30px clamp(18px,4vw,40px) 28px}
+.co h2{font-size:30px;padding-right:40px}
+.progress{display:flex;gap:6px;list-style:none;padding:0;margin:16px 0 22px;flex-wrap:wrap}
+.progress li{flex:1;min-width:110px;font-size:13px;font-weight:800;color:var(--muted);border-top:4px solid var(--line);padding-top:6px}
+.progress li.on{color:var(--ink);border-color:var(--rose)}
+.progress li.done{color:var(--ink);border-color:var(--ink)}
+.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px}
+.form .full{grid-column:1/-1}
+@media (max-width:600px){.form{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field label{font-weight:800;font-size:14px;color:var(--ink)}
+.field label small{font-weight:600;color:var(--muted)}
+.field input,.field select,.field textarea{font:inherit;font-size:16px;color:var(--text);background:#fffdf6;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;width:100%}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus-visible,.field select:focus-visible,.field textarea:focus-visible{outline:none;border-color:var(--water);box-shadow:0 0 0 3px rgba(79,127,191,.18)}
+.field .hint{font-size:12.5px;color:var(--muted)}
+.field.bad input,.field.bad select,.field.bad textarea{border-color:var(--rose-deep)}
+.toggle{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.toggle button{border:1.5px solid var(--line);background:#fffdf6;border-radius:16px;padding:14px;text-align:left;color:var(--text)}
+.toggle button b{display:block;font-family:var(--f-display);font-size:19px;color:var(--ink);font-weight:700}
+.toggle button span{font-size:13.5px;color:var(--muted)}
+.toggle button[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink);background:var(--paper)}
+.check{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.check input{width:20px;height:20px;accent-color:var(--ink);margin-top:2px}
+.slotbox{border:1.5px dashed var(--line);border-radius:16px;padding:14px 16px 16px}
+.slotbox legend{font-family:var(--f-display);font-weight:700;color:var(--ink);font-size:18px;padding:0 6px}
+.slotbox .form{margin-top:4px}
+.err{color:var(--rose-deep);font-weight:700;font-size:14.5px;min-height:22px;margin-top:14px}
+.co-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px;padding-top:16px;border-top:1.5px dashed var(--line)}
+.pay{display:grid;grid-template-columns:200px minmax(0,1fr);gap:22px;align-items:start}
+@media (max-width:600px){.pay{grid-template-columns:1fr}}
+.qr{width:200px;max-width:100%;aspect-ratio:1;border-radius:18px;background:#fff;border:1.5px solid var(--line);display:grid;place-items:center;overflow:hidden}
+.qr svg{width:86%;height:86%}
+.copyrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--paper);border-radius:12px;padding:10px 14px;margin-top:8px}
+.copyrow code{font-family:var(--f-body);font-weight:800;font-size:18px;color:var(--ink);letter-spacing:.03em;user-select:all}
+.mini{border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:4px 12px;font-size:13px;font-weight:800}
+.proof{max-width:160px;border-radius:12px;border:1.5px solid var(--line);margin-top:8px}
+.review{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+@media (max-width:600px){.review{grid-template-columns:1fr}}
+.review h3{font-size:18px;margin-bottom:6px}
+.review p,.review li{font-size:14.5px}
+.review ul{margin:0;padding-left:18px}
+.receipt{width:100%;border-collapse:collapse;font-size:14.5px;font-variant-numeric:tabular-nums}
+.receipt td{padding:6px 0;border-bottom:1px dashed var(--line);vertical-align:top}
+.receipt td:last-child{text-align:right;white-space:nowrap;padding-left:12px}
+.receipt tr.total td{border:0;font-weight:800;color:var(--ink);font-size:17px;padding-top:10px}
+
+.done{text-align:center;padding:36px clamp(18px,4vw,40px) 34px}
+.done .boatbox{position:relative;width:220px;height:150px;margin:0 auto 10px}
+.done .boatbox img{width:100%;height:100%;object-fit:cover;border-radius:50%;-webkit-mask-image:radial-gradient(ellipse,#000 50%,transparent 70%);mask-image:radial-gradient(ellipse,#000 50%,transparent 70%);animation:bob 3.2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px) rotate(-2deg)}}
+.done h2{font-size:34px}
+.done .code{display:inline-block;margin:14px 0;font-family:var(--f-hand);font-size:34px;color:var(--rose-deep);border:2px dashed var(--rose);border-radius:14px;padding:2px 18px}
+.done p{max-width:48ch;margin:0 auto}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper-hi);padding:11px 20px;border-radius:999px;font-weight:800;z-index:60;box-shadow:0 10px 24px -10px rgba(0,0,0,.4);animation:rise .2s ease-out;max-width:calc(100% - 32px);text-align:center}
+
+/* ---------- motion ---------- */
+.hero{position:relative}
+#petals{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+.hero-mid{position:relative;z-index:2}
+.flank.left{animation:bloomL 1.2s cubic-bezier(.2,.8,.2,1) both}
+.flank.right{animation:bloomR 1.2s .12s cubic-bezier(.2,.8,.2,1) both}
+@keyframes bloomL{from{opacity:0;transform:translateX(-50px) scale(.94)}}
+@keyframes bloomR{from{opacity:0;transform:translateX(50px) scale(.94)}}
+.hero h1 img{animation:pop .9s .3s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes pop{from{opacity:0;transform:scale(.82) rotate(-5deg)}}
+.hero .lede{animation:up .7s .55s ease-out both}
+.hero .ctas{animation:up .7s .7s ease-out both}
+@keyframes up{from{opacity:0;transform:translateY(12px)}}
+
+.when{position:relative;overflow-x:clip}
+.sail{position:absolute;top:-32px;left:0;width:88px;pointer-events:none;z-index:3;animation:sail 44s linear infinite}
+.sail img{display:block;width:100%;height:auto;animation:bob 2.8s ease-in-out infinite}
+@keyframes sail{from{transform:translateX(-120px)}to{transform:translateX(calc(100vw + 20px))}}
+
+.steps .ico{position:absolute;top:12px;right:14px;width:60px;height:60px;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.steps li:hover .ico{transform:rotate(-8deg) scale(1.08)}
+.steps h3{padding-right:58px}
+
+.card button.art{border:0;padding:0;margin:0;background:none;cursor:pointer;width:100%;font:inherit;color:inherit}
+.card button.art:focus-visible{outline:3px dashed var(--water);outline-offset:-8px}
+.card .go{background:none;border:0;border-bottom:2px solid var(--rose);padding:0;cursor:pointer}
+.sway{transform-box:view-box;transform-origin:100px 192px}
+.card:hover .sway,.card:focus-within .sway{animation:sway 2.4s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(0)}30%{transform:rotate(-4deg)}70%{transform:rotate(3deg)}}
+.dots{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px;min-height:24px;align-items:center}
+.dot{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(75,50,34,.45);padding:0;cursor:pointer;transition:transform .15s}
+.dot:hover{transform:scale(1.15)}
+.dot[aria-pressed="true"]{box-shadow:0 0 0 2.5px var(--paper-hi),0 0 0 4px var(--ink)}
+.recolor svg{animation:recolor .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes recolor{0%{transform:scale(.9) rotate(-3deg)}100%{transform:none}}
+.grid.enter .card{animation:cardIn .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i) * 45ms)}
+@keyframes cardIn{from{opacity:0;transform:translateY(16px) scale(.97)}}
+.cart-btn.bump .count{animation:bump .55s cubic-bezier(.34,1.56,.64,1)}
+.cart-btn.bump svg{animation:tip .55s ease-in-out}
+@keyframes bump{40%{transform:scale(1.55)}}
+@keyframes tip{30%{transform:rotate(-14deg)}65%{transform:rotate(8deg)}}
+.flyer{position:fixed;z-index:70;pointer-events:none}
+.flyer svg{width:100%;height:100%;display:block}
+
+.msg-wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:26px;align-items:start}
+@media (max-width:720px){.msg-wrap{grid-template-columns:1fr}}
+.notecard-label{font-size:13px;font-weight:800;color:var(--muted);margin-bottom:12px}
+.notecard{position:relative;background-color:#fffdf4;border:1.5px solid var(--line);border-radius:6px;padding:20px 20px 16px;transform:rotate(-1.5deg);box-shadow:0 16px 28px -18px rgba(75,50,34,.65);
+  background-image:repeating-linear-gradient(transparent 0 31px,rgba(79,127,191,.2) 31px 32px);background-position:0 18px}
+.notecard .stamp{position:absolute;top:-18px;right:12px;width:58px;height:58px;transform:rotate(10deg)}
+.notecard .to,.notecard .from{font-family:var(--f-hand);font-size:23px;line-height:32px;color:var(--ink)}
+.notecard .nbody{font-family:var(--f-hand);font-size:24px;line-height:32px;color:var(--text);min-height:96px;white-space:pre-wrap;overflow-wrap:anywhere}
+.notecard .nbody.ph{color:#b8a48f}
+.notecard .from{text-align:right}
+
+/* ---------- interaction polish ---------- */
+button,a,summary,.dot{touch-action:manipulation;-webkit-tap-highlight-color:rgba(227,136,159,.25)}
+.lines,.sheet,.drawer{overscroll-behavior:contain}
+.chip:hover{background:var(--paper-lo)}
+.chip[aria-pressed="true"]:hover{background:#5c2f12}
+.sw:hover{border-color:var(--ink)}
+.mini:hover{background:var(--paper-lo)}
+.qty button:hover{background:var(--paper-lo)}
+.remove:hover{color:var(--rose-deep)}
+.toggle button:hover{border-color:var(--ink)}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:fixed;z-index:80;top:calc(8px + env(safe-area-inset-top,0px));left:max(16px,env(safe-area-inset-left,0px));background:var(--ink);color:var(--paper-hi);padding:10px 16px;border-radius:999px;font-weight:800;transform:translateY(-200%)}
+.skip:focus{transform:none}
+.toast{display:flex;align-items:center;gap:14px}
+.undo{border:0;background:none;color:var(--marigold);font-weight:800;text-decoration:underline;padding:2px 4px;border-radius:6px}
+.undo:hover{color:#fff}
+.ferr{color:var(--rose-deep);font-size:13px;font-weight:700}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<!-- shared drawing defs for the watercolor look -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="ink" x="-10%" y="-10%" width="120%" height="120%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="3.2"/>
+    </filter>
+    <filter id="wash" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="9" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="18"/>
+      <feGaussianBlur stdDeviation="1.6"/>
+    </filter>
+    <linearGradient id="irisP" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d7c2f2"/><stop offset=".45" stop-color="#9a7fd6"/><stop offset=".7" stop-color="#9fd3e6"/><stop offset="1" stop-color="#c79be0"/></linearGradient>
+    <linearGradient id="irisW" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".4" stop-color="#e9e3f6"/><stop offset=".7" stop-color="#d9f0ef"/><stop offset="1" stop-color="#f7e6f0"/></linearGradient>
+  </defs>
+</svg>
+
+<a class="skip" href="#main">Skip to Content</a>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Rose Sale ’27 home" translate="no"><img src="img/logo-t.png" alt="Rose Sale ’27" width="413" height="229"></a>
+    <nav class="links" aria-label="Sections">
+      <a href="#how">How It Works</a><a href="#shop">Shop</a><a href="#delivery">Delivery</a><a href="#faq">FAQ</a>
+    </nav>
+    <button class="cart-btn" id="openCart" aria-label="Open cart">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.5 11h-11z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+      Cart <span class="count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main id="top"><span id="main" tabindex="-1"></span>
+  <section class="hero">
+    <canvas id="petals" aria-hidden="true"></canvas>
+    <div class="hero-row">
+      <img class="flank left" src="img/left.jpg" alt="" width="530" height="276" fetchpriority="high">
+      <div class="hero-mid">
+        <h1 translate="no"><img src="img/logo-t.png" alt="Rose Sale ’27" width="413" height="229" fetchpriority="high"></h1>
+        <p class="lede">Handcrafted flowers and small gifts from Celadon. We deliver them to your someone’s classroom during Valentine’s week, or you can pick them up at our booth.</p>
+        <div class="ctas">
+          <a class="btn solid" href="#shop">Shop the Flowers</a>
+          <a class="btn ghost" href="#delivery">How Delivery Works</a>
+        </div>
+      </div>
+      <img class="flank right" src="img/right.jpg" alt="" width="380" height="279" fetchpriority="high">
+    </div>
+  </section>
+  <section class="when" aria-label="Key dates"><div class="sail" aria-hidden="true"><img src="img/boat-t.png" alt="" width="183" height="87"></div><div class="wrap"><dl id="dateList"></dl></div></section>
+
+  <section class="sec" id="how">
+    <div class="wrap">
+      <div class="sec-head"><h2>How It Works</h2><p>Four steps from picking a flower to it landing on their desk.</p></div>
+      <ol class="steps">
+        <li><svg class="ico" data-ico="rose" viewBox="0 0 100 100" aria-hidden="true"></svg><h3>Pick Your Blooms</h3><p>Choose single stems, a bouquet or a bundle, and pick the colors for each flower.</p></li>
+        <li><svg class="ico" data-ico="note" viewBox="0 0 100 100" aria-hidden="true"></svg><h3>Write a Note</h3><p>Add a message for your recipient. You can send it anonymously if you like.</p></li>
+        <li><svg class="ico" data-ico="boat" viewBox="0 0 100 100" aria-hidden="true"></svg><h3>Choose Delivery or Pickup</h3><p>Give us two class schedules for delivery, or book a pickup time at the booth.</p></li>
+        <li><svg class="ico" data-ico="phone" viewBox="0 0 100 100" aria-hidden="true"></svg><h3>Pay with GCash</h3><p>Scan our QR, then enter your reference number so we can confirm your order.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="shop">
+    <div class="wrap">
+      <div class="sec-head"><h2>The Flower Stall</h2><p>Every flower is handmade and lasts forever. Prices are per item.</p></div>
+      <div class="filters" id="filters" role="group" aria-label="Filter by category"></div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="delivery">
+    <div class="wrap two">
+      <div class="panel">
+        <h3>Classroom Delivery</h3>
+        <p>Our runners bring your order to your recipient during one of their classes from <b id="delWindow"></b>. Give us two schedules (date, building, room and time) so we have a backup if they’re not in the first room.</p>
+        <p>We deliver to these buildings:</p>
+        <ul class="venues" id="venueList"></ul>
+      </div>
+      <div class="panel">
+        <h3>Booth Pickup</h3>
+        <p>Rather hand it over yourself? Choose pickup at checkout and pick a date and time from <b id="pickWindow"></b>. Bring your order code from the confirmation screen.</p>
+        <p>Pickup is free. Orders for delivery and pickup close on <b id="closeDate"></b>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="faq">
+    <div class="wrap two">
+      <div>
+        <div class="sec-head" style="margin-bottom:10px"><h2>Questions</h2></div>
+        <p style="color:var(--muted);max-width:40ch">Can’t find your answer here? Message Celadon on Facebook and a member will get back to you.</p>
+      </div>
+      <div class="panel">
+        <details><summary>Are the flowers real?</summary><p>No. Every bloom is handcrafted, so it keeps its shape and color long after Valentine’s week.</p></details>
+        <details><summary>Can I send it anonymously?</summary><p>Yes. Tick “Send anonymously” at checkout and we’ll leave your name off the card. We still need your details for the order.</p></details>
+        <details><summary>What if my recipient isn’t in class?</summary><p>That’s what the backup schedule is for. If we miss them at both, we’ll message you to arrange a pickup.</p></details>
+        <details><summary>How do I pay?</summary><p>Through GCash. Scan the QR at checkout, send the exact total, then type your reference number and upload a screenshot of the receipt.</p></details>
+        <details><summary>Can I change my order?</summary><p>Message us with your order code before the order window closes and we’ll update it.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <img class="lily" src="img/right.jpg" alt="" width="380" height="279" loading="lazy">
+  <div class="wrap">
+    <div>
+      <img src="img/logo-t.png" alt="Rose Sale ’27" width="413" height="229" loading="lazy" translate="no" style="height:52px;width:auto;display:block;margin-bottom:6px">
+      <p>Brought to you by <strong translate="no">Celadon</strong>. Proceeds support the org’s advocacies.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- cart drawer -->
+<div class="scrim" id="cartScrim" hidden></div>
+<aside class="drawer" id="cart" hidden aria-label="Your cart">
+  <div class="drawer-head"><h2>Your Cart</h2><button class="x" id="closeCart" aria-label="Close cart">&times;</button></div>
+  <div class="lines" id="lines"></div>
+  <div class="totals" id="totals"></div>
+</aside>
+
+<!-- product sheet -->
+<div class="scrim" id="pdScrim" hidden></div>
+<div class="sheet" id="pdSheet" hidden><div class="paper" id="pdPaper" role="dialog" aria-modal="true" aria-label="Product details"></div></div>
+
+<!-- checkout sheet -->
+<div class="scrim" id="coScrim" hidden></div>
+<div class="sheet" id="coSheet" hidden><div class="paper" id="coPaper" role="dialog" aria-modal="true" aria-label="Checkout"></div></div>
+
+<div class="toast" id="toast" hidden></div>
+<div class="sr" id="live" role="status" aria-live="polite"></div>
+
+<script>
+/* =========================================================
+   SETTINGS — edit these for Rose Sale ’27
+   ========================================================= */
+const CONFIG = {
+  deliveryDates: ["2027-02-08","2027-02-09","2027-02-10","2027-02-11","2027-02-12"],
+  pickupDates:   ["2027-02-08","2027-02-09","2027-02-10","2027-02-11","2027-02-12","2027-02-13"],
+  orderClose: "2027-02-05",
+  gcashName: "Celadon Treasurer",
+  gcashNumber: "09XX XXX XXXX",          // replace with the org’s GCash number
+  qrImage: "",                          // path to the GCash QR image, e.g. "img/qr.png"
+  orderEndpoint: ""                      // paste your Apps Script web app URL (ends in /exec)
+};
+const VENUES = [
+  ["ARETE","Arete"],["B","Berchmans Hall"],["C","Schmitt Hall"],["CTC","PLDT Convergent Technologies Center"],
+  ["F","Faura Hall"],["G","Gonzaga Hall"],["K","Kostka Hall"],["LH","Leong Hall"],["MVP","MVP Center for Student Leadership"],
+  ["SEC-A","Science Education Complex A"],["SEC-B","Science Education Complex B"],["SEC-C","Science Education Complex C"],
+  ["SOM","John Gokongwei School of Management"],["SS","Social Sciences Building"]
+];
+
+/* ---------- variants: every color/design a customer can pick ---------- */
+const V = {
+  "roses-01":{n:"Red Rose",c:"#d64a5d",k:"rose"},
+  "roses-02":{n:"White Rose",c:"#f8f3ea",k:"rose"},
+  "roses-03":{n:"Pink Rose",c:"#f2a9bd",k:"rose"},
+  "carnations-01":{n:"Light Pink Carnation",c:"#f6bfcd",k:"carnation"},
+  "carnations-02":{n:"Pomelo Carnation",c:"#f49b7d",k:"carnation"},
+  "carnations-03":{n:"Two-Toned Carnation",c:"#fbf3ef",e:"#d64a5d",k:"carnation"},
+  "carnations-04":{n:"Blue Carnation",c:"#8db4e2",k:"carnation"},
+  "carnations-05":{n:"Lavender Carnation",c:"#c4a8e2",k:"carnation"},
+  "tulips-01":{n:"Pink Tulip",c:"#ef90af",k:"tulip"},
+  "tulips-02":{n:"Yellow Tulip",c:"#f3cb4d",k:"tulip"},
+  "gerbera-01":{n:"Yellow Gerbera",c:"#f5c642",k:"gerbera"},
+  "gerbera-02":{n:"Pink Gerbera",c:"#ee86a5",k:"gerbera"},
+  "lego-01":{n:"Pink",c:"#f19fba",k:"lego"},
+  "lego-02":{n:"Blue",c:"#78a5dc",k:"lego"},
+  "lego-t":{n:"Transparent Red",c:"#e5506a",k:"lego",a:.6},
+  "foil-01":{n:"Mystery Purple",c:"url(#irisP)",sw:"linear-gradient(135deg,#d7c2f2,#9a7fd6,#9fd3e6)",k:"foil"},
+  "foil-02":{n:"Pearlescent White",c:"url(#irisW)",sw:"linear-gradient(135deg,#fff,#e9e3f6,#d9f0ef)",k:"foil"},
+  "crochet-02":{n:"Yellow",c:"#f2c84b",k:"crochet"},
+  "crochet-03":{n:"Red",c:"#d64a5d",k:"crochet"},
+  "key-chii":{n:"Chiikawa",c:"#fbe3ea",k:"keychain"},
+  "key-dog":{n:"Dog",c:"#d9a66b",k:"keychain"},
+  "br-yy":{n:"Yin & Yang",c:"#2f2a2a",c2:"#fbf7ef",k:"bracelet"},
+  "br-br":{n:"Bear & Rabbit",c:"#c48b5f",c2:"#f2a9bd",k:"bracelet"},
+  "br-tangled":{n:"Tangled",c:"#b48ad8",c2:"#f2c84b",k:"bracelet"},
+  "cl-01":{n:"Acrylic",c:"#d6e9ee",k:"clamp",a:.75},
+  "cl-02":{n:"Pink",c:"#f2a9bd",k:"clamp"},
+  "cl-03":{n:"Blue",c:"#8db4e2",k:"clamp"},
+  "cl-04":{n:"Purple",c:"#b79bdc",k:"clamp"},
+  "rec-01":{n:"Red",c:"#d64a5d",k:"recorder"},
+  "rec-02":{n:"Blue",c:"#5d88cb",k:"recorder"},
+  "oct-01":{n:"Light Blue & Blue",c:"#a8d2ef",c2:"#5d88cb",k:"octopus"},
+  "oct-02":{n:"Blue & Pink",c:"#5d88cb",c2:"#f2a9bd",k:"octopus"},
+  "st-02":{n:"Lovebound",c:"#e46a7e",k:"sticker"},
+  "st-03":{n:"Soft Spot",c:"#f2a9bd",k:"sticker"},
+  "st-04":{n:"Bloom Besties",c:"#f3cb4d",k:"sticker"},
+  "st-05":{n:"Panda’s Serenade",c:"#8fbf7a",k:"sticker"},
+  "st-06":{n:"Heart Strings",c:"#b79bdc",k:"sticker"},
+  "bq-rose":{n:"Rose Bouquet",c:"#d64a5d",k:"rose"},
+  "bq-carn":{n:"Carnation Bouquet",c:"#f6bfcd",k:"carnation"},
+};
+const ROSES=["roses-01","roses-02","roses-03"], CARNS=["carnations-01","carnations-02","carnations-03"];
+const FOCAL=[...ROSES,...CARNS], TULIPS=["tulips-01","tulips-02"];
+const slot=(label,opts,def)=>({label,opts,def:def??opts[0]});
+
+/* ---------- catalog (Rose Sale '26 lineup as the starting point) ---------- */
+const PRODUCTS = [
+  {id:"bundle-01",name:"Just Stick Around Bundle",price:350,cat:"bundles",
+   desc:"Three handcrafted blooms with a soft, reversible octopus plushie. Flowers they keep forever and something to hug.",
+   slots:[slot("Flower 1",FOCAL,"roses-01"),slot("Flower 2",FOCAL,"carnations-01"),slot("Flower 3",FOCAL,"roses-03"),slot("Plushie",["oct-01","oct-02"])],
+   art:{type:"bundle",heads:[0,1,2],extra:3}},
+  {id:"bundle-02",name:"Yours Everyday Bundle",price:450,cat:"bundles",
+   desc:"Four focal flowers and a pair of magnetic couple bracelets, Yin & Yang or Bear & Rabbit.",
+   slots:[slot("Flower 1",FOCAL,"roses-01"),slot("Flower 2",FOCAL,"roses-02"),slot("Flower 3",FOCAL,"carnations-02"),slot("Flower 4",FOCAL,"roses-03"),slot("Bracelets",["br-yy","br-br"])],
+   art:{type:"bundle",heads:[0,1,2,3],extra:4}},
+  {id:"bundle-03",name:"Valentina’s Bundle",price:500,cat:"bundles",
+   desc:"A tall tulip framed by two classic blooms, paired with a mini cassette recorder for a voice message.",
+   slots:[slot("Tulip",TULIPS),slot("Flower 2",FOCAL,"roses-01"),slot("Flower 3",FOCAL,"carnations-01"),slot("Recorder",["rec-01","rec-02"])],
+   art:{type:"bundle",heads:[1,0,2],extra:3}},
+  {id:"bundle-04",name:"The Konvy Bundle",price:700,cat:"bundles",tag:"Konvy collab",
+   desc:"A handcrafted bouquet with a makeup essentials kit from our partner Konvy.",
+   slots:[slot("Bouquet",["bq-rose","bq-carn"])],fixed:"Includes blush, powder, lipstick and blotting papers.",
+   art:{type:"konvy"}},
+  {id:"rose-bouquet",name:"Rose Bouquet",price:300,cat:"bouquets",
+   desc:"Three tightly woven focal roses, wrapped. Looks good in any color mix.",
+   slots:[slot("Rose 1",ROSES,"roses-01"),slot("Rose 2",ROSES,"roses-02"),slot("Rose 3",ROSES,"roses-03")],art:{type:"bouquet",heads:[0,1,2]}},
+  {id:"carnation-bouquet",name:"Carnation Bouquet",price:300,cat:"bouquets",
+   desc:"Three ruffled carnations for a fuller, friendlier bouquet. Great for best friends and moms.",
+   slots:[slot("Carnation 1",CARNS,"carnations-01"),slot("Carnation 2",CARNS,"carnations-02"),slot("Carnation 3",CARNS,"carnations-03")],art:{type:"bouquet",heads:[0,1,2]}},
+  {id:"tulip-bouquet",name:"Tulip Bouquet",price:700,cat:"bouquets",
+   desc:"Three tall premium tulips with clean lines, wrapped Korean-style.",
+   slots:[slot("Tulip 1",TULIPS,"tulips-01"),slot("Tulip 2",TULIPS,"tulips-02"),slot("Tulip 3",TULIPS,"tulips-01")],art:{type:"bouquet",heads:[0,1,2]}},
+  {id:"roses-00",name:"Rose",price:100,cat:"flowers",
+   desc:"The classic. Tightly woven petals that look like an opening bloom.",
+   slots:[slot("Color",ROSES)],art:{type:"stem"}},
+  {id:"carnations-00",name:"Carnation",price:100,cat:"flowers",
+   desc:"Soft, ruffled and full. Adds fluffiness to any arrangement.",
+   slots:[slot("Color",CARNS)],art:{type:"stem"}},
+  {id:"tulips-00",name:"Tulip",price:250,cat:"flowers",tag:"Premium",
+   desc:"Sleek and tall. The elegant one in any bunch.",
+   slots:[slot("Color",TULIPS)],art:{type:"stem"}},
+  {id:"gerbera-00",name:"Gerbera",price:150,cat:"flowers",tag:"Premium",
+   desc:"A wide, sunny face that’s bigger than our standard blooms.",
+   slots:[slot("Color",["gerbera-01","gerbera-02"])],art:{type:"stem"}},
+  {id:"carnations-06",name:"Blue or Lavender Carnation",price:120,cat:"flowers",tag:"Premium",
+   desc:"A cool-toned accent bloom that ties a bouquet together.",
+   slots:[slot("Color",["carnations-04","carnations-05"])],art:{type:"stem"}},
+  {id:"transparent-lego-flower",name:"Transparent Red Lego Flower",price:120,cat:"keepsakes",tag:"Pre-order exclusive",
+   desc:"A buildable lego rose with a glassy, see-through finish.",
+   slots:[],fixedVariant:"lego-t",art:{type:"single"}},
+  {id:"lego-flower-00",name:"Lego Flower",price:120,cat:"keepsakes",
+   desc:"A buildable lego rose in pink or blue.",
+   slots:[slot("Color",["lego-01","lego-02"])],art:{type:"single"}},
+  {id:"foil-flower-00",name:"Foil Flower",price:150,cat:"keepsakes",
+   desc:"Holographic foil petals that shift color as they catch the light.",
+   slots:[slot("Color",["foil-01","foil-02"])],art:{type:"stem"}},
+  {id:"crochet-flower-00",name:"Crochet Flower",price:200,cat:"keepsakes",
+   desc:"Hand-crocheted, stitch by stitch, in red or yellow.",
+   slots:[slot("Color",["crochet-03","crochet-02"])],art:{type:"stem"}},
+  {id:"keychain-01",name:"Couple Keychain",price:200,cat:"gifts",
+   desc:"A pair of magnetic keychains that snap together when they’re close.",
+   slots:[slot("Design",["key-chii","key-dog"])],art:{type:"single"}},
+  {id:"tangled-bracelet",name:"Tangled Couple Bracelet",price:300,cat:"gifts",tag:"Premium",
+   desc:"Woven couple bracelets with intricate detailing in lilac and gold.",
+   slots:[],fixedVariant:"br-tangled",art:{type:"single"}},
+  {id:"bracelet",name:"Couple Bracelet",price:200,cat:"gifts",
+   desc:"Matching magnetic bracelets: Yin & Yang charms, or a Bear and a Rabbit.",
+   slots:[slot("Design",["br-yy","br-br"])],art:{type:"single"}},
+  {id:"flower-clamps-00",name:"Flower Clamps",price:100,cat:"gifts",
+   desc:"Flower-shaped claw clips for hair or bags.",
+   slots:[slot("Color",["cl-01","cl-02","cl-03","cl-04"],"cl-02")],art:{type:"single"}},
+  {id:"recorder-00",name:"Cassette Recorder",price:120,cat:"gifts",
+   desc:"A mini voice recorder. Record a short message that plays back at the press of a button.",
+   slots:[slot("Color",["rec-01","rec-02"])],art:{type:"single"}},
+  {id:"octopus",name:"Reversible Octopus Plushie",price:120,cat:"gifts",
+   desc:"Flip it inside out to show a different mood. Soft and squishy.",
+   slots:[slot("Colors",["oct-01","oct-02"])],art:{type:"single"}},
+  {id:"sticker-01",name:"2 Large Stickers",price:50,cat:"gifts",
+   desc:"Pick any two of our five illustrated designs for your laptop, bottle or journal.",
+   slots:[slot("Sticker 1",["st-02","st-03","st-04","st-05","st-06"]),slot("Sticker 2",["st-02","st-03","st-04","st-05","st-06"],"st-04")],art:{type:"stickers"}},
+];
+const CATS=[["all","Everything"],["bundles","Bundles"],["bouquets","Bouquets"],["flowers","Single Stems"],["keepsakes","Keepsake Flowers"],["gifts","Gifts & Add-Ons"]];
+
+/* =========================================================
+   Hand-drawn art (SVG built from simple shapes + ink filter)
+   ========================================================= */
+const INK="#4a2c1d", LEAF="#8cbd78", LEAF2="#6d9f5c";
+const f=n=>Math.round(n*10)/10;
+function ruffle(x,y,r,n){ // scalloped circle
+  let d="";for(let i=0;i<=n;i++){const a=i/n*Math.PI*2-Math.PI/2;const px=x+Math.cos(a)*r,py=y+Math.sin(a)*r;
+    if(i===0)d+=`M${f(px)},${f(py)}`;else d+=`A${f(r*.32)},${f(r*.32)} 0 0 1 ${f(px)},${f(py)}`;}
+  return d+"Z";
+}
+function head(vid,x,y,r){
+  const v=V[vid]||V["roses-01"];const c=v.c;const op=v.a?` fill-opacity="${v.a}"`:"";
+  switch(v.k){
+    case "carnation":{
+      const outer=v.e?v.e:c;
+      return `<path d="${ruffle(x,y,r,14)}" fill="${outer}"/>`+
+        (v.e?`<path d="${ruffle(x,y,r*.82,13)}" fill="${c}" stroke="none"/>`:"")+
+        `<path d="${ruffle(x,y-r*.05,r*.55,9)}" fill="${c}"/><path d="M${f(x-r*.25)},${f(y+r*.05)} q${f(r*.25)},${f(-r*.3)} ${f(r*.5)},0 M${f(x-r*.6)},${f(y+r*.35)} q${f(r*.2)},${f(-r*.15)} ${f(r*.4)},${f(r*.05)} M${f(x+r*.2)},${f(y+r*.4)} q${f(r*.2)},${f(-r*.2)} ${f(r*.4)},${f(-r*.05)}" fill="none"/>`;}
+    case "tulip":
+      return `<path d="M${f(x-r*.85)},${f(y-r*.55)} Q${f(x-r*.95)},${f(y+r)} ${x},${f(y+r)} Q${f(x+r*.95)},${f(y+r)} ${f(x+r*.85)},${f(y-r*.55)} L${f(x+r*.42)},${f(y-r*.1)} L${x},${f(y-r*.75)} L${f(x-r*.42)},${f(y-r*.1)} Z" fill="${c}"/><path d="M${x},${f(y-r*.75)} Q${f(x-r*.25)},${f(y+r*.2)} ${x},${f(y+r)} M${f(x-r*.42)},${f(y-r*.1)} Q${f(x-r*.35)},${f(y+r*.6)} ${f(x-r*.1)},${f(y+r*.95)}" fill="none"/>`;
+    case "gerbera":{
+      let s="";for(let i=0;i<16;i++){const a=i*22.5;s+=`<ellipse cx="${x}" cy="${f(y-r*.62)}" rx="${f(r*.17)}" ry="${f(r*.42)}" fill="${c}" transform="rotate(${a} ${x} ${y})"/>`;}
+      return s+`<circle cx="${x}" cy="${y}" r="${f(r*.32)}" fill="#7a5a2a"/><circle cx="${x}" cy="${y}" r="${f(r*.16)}" fill="#a8c46a"/>`;}
+    case "lego":{
+      let s="";for(let i=0;i<5;i++){const a=i*72;s+=`<rect x="${f(x-r*.28)}" y="${f(y-r)}" width="${f(r*.56)}" height="${f(r*.75)}" rx="${f(r*.12)}" fill="${c}"${op} transform="rotate(${a} ${x} ${y})"/>`;}
+      s+=`<rect x="${f(x-r*.35)}" y="${f(y-r*.35)}" width="${f(r*.7)}" height="${f(r*.7)}" rx="${f(r*.1)}" fill="${c}"${op}/>`;
+      for(const [dx,dy] of [[-.16,-.16],[.16,-.16],[-.16,.16],[.16,.16]])s+=`<circle cx="${f(x+dx*r)}" cy="${f(y+dy*r)}" r="${f(r*.1)}" fill="${c}"${op}/>`;
+      return s;}
+    case "crochet":{
+      return roseShape(x,y,r,c)+`<circle cx="${x}" cy="${y}" r="${f(r*.78)}" fill="none" stroke-dasharray="2 4" stroke-width="1.6"/><circle cx="${x}" cy="${y}" r="${f(r*.5)}" fill="none" stroke-dasharray="2 4" stroke-width="1.6"/>`;}
+    case "foil":
+      return roseShape(x,y,r,c)+`<path d="M${f(x-r*.5)},${f(y-r*.6)} l${f(r*.18)},${f(r*.1)} M${f(x+r*.55)},${f(y+r*.2)} l${f(r*.12)},${f(r*.16)}" stroke="#fff" stroke-width="2.5" fill="none"/>`;
+    default: return roseShape(x,y,r,c);
+  }
+}
+function roseShape(x,y,r,c){
+  return `<circle cx="${x}" cy="${y}" r="${r}" fill="${c}"/><path d="M${f(x-r*.38)},${f(y+r*.08)} a${f(r*.4)},${f(r*.4)} 0 1 1 ${f(r*.6)},${f(r*.32)} M${f(x-r*.12)},${f(y-r*.02)} a${f(r*.18)},${f(r*.18)} 0 1 0 ${f(r*.3)},${f(-r*.08)} M${f(x-r*.82)},${f(y+r*.12)} q${f(r*.12)},${f(r*.72)} ${f(r*.88)},${f(r*.68)} M${f(x+r*.86)},${f(y-r*.08)} q${f(-r*.04)},${f(r*.72)} ${f(-r*.78)},${f(r*.84)} M${f(x-r*.68)},${f(y-r*.5)} q${f(r*.52)},${f(-r*.5)} ${f(r*1.22)},${f(-r*.12)}" fill="none"/>`;
+}
+function stem(x1,y1,x2,y2,leafSide=1){
+  const mx=(x1+x2)/2,my=(y1+y2)/2;
+  return `<path d="M${x1},${y1} Q${f(mx+8*leafSide)},${f(my)} ${x2},${y2}" stroke="${LEAF2}" stroke-width="5" fill="none"/>`+
+   `<path d="M${f(mx)},${f(my+12)} q${f(28*leafSide)},${-6} ${f(40*leafSide)},${-30} q${f(-30*leafSide)},${2} ${f(-40*leafSide)},${30}Z" fill="${LEAF}"/>`;
+}
+function thing(vid,x,y,s){ // accessories; s = scale (1 => ~120px)
+  const v=V[vid]||{k:vid,c:"#d64a5d"};const c=v.c,c2=v.c2||"#fff";const op=v.a?` fill-opacity="${v.a}"`:"";
+  const T=(inner)=>`<g transform="translate(${x} ${y}) scale(${s})">${inner}</g>`;
+  switch(v.k){
+    case "keychain":return T(`<circle cx="0" cy="-50" r="14" fill="none" stroke="#9aa0a6" stroke-width="5"/><path d="M-6,-37 L-22,-10 M6,-37 L22,-10" stroke="#9aa0a6" stroke-width="3" fill="none"/>
+      <g><circle cx="-26" cy="18" r="30" fill="${c}"/><ellipse cx="-44" cy="-8" rx="9" ry="12" fill="${c}"/><ellipse cx="-8" cy="-8" rx="9" ry="12" fill="${c}"/><circle cx="-36" cy="16" r="3" fill="${INK}"/><circle cx="-16" cy="16" r="3" fill="${INK}"/><path d="M-30,27 q4,4 8,0" fill="none"/></g>
+      <g><circle cx="28" cy="18" r="30" fill="${c}"/><ellipse cx="10" cy="-8" rx="9" ry="12" fill="${c}"/><ellipse cx="46" cy="-8" rx="9" ry="12" fill="${c}"/><circle cx="18" cy="16" r="3" fill="${INK}"/><circle cx="38" cy="16" r="3" fill="${INK}"/><path d="M24,27 q4,4 8,0" fill="none"/><path d="M0,30 c-3,-6 4,-9 6,-3 c2,-6 9,-3 6,3 l-6,7z" fill="#e46a7e" stroke-width="1.5"/></g>`);
+    case "bracelet":{let b="";for(let i=0;i<18;i++){const a=i/18*Math.PI*2;b+=`<circle cx="${f(Math.cos(a)*44)}" cy="${f(Math.sin(a)*44)}" r="8" fill="${i%2?c:c2}"/>`;}
+      let b2="";for(let i=0;i<18;i++){const a=i/18*Math.PI*2;b2+=`<circle cx="${f(30+Math.cos(a)*40)}" cy="${f(26+Math.sin(a)*40)}" r="7" fill="${i%2?c2:c}"/>`;}
+      return T(`<g transform="translate(-22 -18)">${b}<circle cx="0" cy="44" r="12" fill="${c2}"/></g>${b2}<circle cx="30" cy="66" r="11" fill="${c}"/>`);}
+    case "clamp":return T(`<path d="M-40,-10 q0,-40 40,-40 q40,0 40,40 l-8,4 q-4,-28 -32,-28 q-28,0 -32,28z" fill="${c}"${op}/>
+      <path d="M-34,0 l0,46 q34,14 68,0 l0,-46" fill="${c}"${op}/><path d="M-20,8 l0,42 M-7,10 l0,44 M7,10 l0,44 M20,8 l0,42" fill="none"/>
+      <path d="${ruffle(0,-24,18,6)}" fill="#fff"/><circle cx="0" cy="-24" r="6" fill="#f3cb4d"/>`);
+    case "recorder":return T(`<rect x="-62" y="-40" width="124" height="80" rx="10" fill="${c}"/><rect x="-46" y="-26" width="92" height="36" rx="6" fill="#fdf7e6"/>
+      <circle cx="-22" cy="-8" r="11" fill="#fff"/><circle cx="22" cy="-8" r="11" fill="#fff"/><circle cx="-22" cy="-8" r="4" fill="${INK}"/><circle cx="22" cy="-8" r="4" fill="${INK}"/>
+      <path d="M-11,-8 h22" fill="none"/><rect x="-34" y="18" width="68" height="14" rx="4" fill="#fdf7e6"/><circle cx="48" cy="25" r="6" fill="#e46a7e"/>`);
+    case "octopus":{let t="";for(let i=0;i<6;i++){const xx=-40+i*16;t+=`<path d="M${xx},18 q${i%2?8:-8},26 ${i%2?-2:4},40" stroke="${i<3?c:c2}" stroke-width="12" fill="none" stroke-linecap="round"/>`;}
+      return T(`${t}<path d="M-50,22 Q-52,-52 0,-52 Q52,-52 50,22 Z" fill="${c}"/><path d="M0,-52 Q52,-52 50,22 L0,22Z" fill="${c2}"/>
+      <path d="M-24,-6 q6,6 12,0 M12,-6 q6,6 12,0" fill="none" stroke-width="3"/><path d="M-6,8 q6,6 12,0" fill="none"/>
+      <ellipse cx="-34" cy="6" rx="7" ry="4" fill="#e46a7e" fill-opacity=".5" stroke="none"/><ellipse cx="34" cy="6" rx="7" ry="4" fill="#e46a7e" fill-opacity=".5" stroke="none"/>`);}
+    case "sticker":return T(`<path d="M-48,-48 h96 v70 l-26,26 h-70z" fill="#fff"/><path d="M48,22 l-26,0 l0,26z" fill="#eadfca"/>
+      <path d="M0,20 c-30,-18 -30,-48 -10,-48 c6,0 10,6 10,10 c0,-4 4,-10 10,-10 c20,0 20,30 -10,48z" fill="${c}"/>`);
+    case "lipstick":return T(`<rect x="-14" y="-6" width="28" height="56" rx="4" fill="#f3cb4d"/><rect x="-11" y="-30" width="22" height="26" fill="#d64a5d"/><path d="M-11,-30 l22,-14 l0,14z" fill="#d64a5d"/>
+      <rect x="22" y="10" width="44" height="40" rx="20" fill="#f2a9bd"/><circle cx="44" cy="30" r="10" fill="#fbe3ea"/>`);
+    default:return T(head(vid,0,0,50));
+  }
+}
+function bg(seed,c){return `<g filter="url(#wash)" opacity=".55"><circle cx="${100+seed%12-6}" cy="${96+seed%9-4}" r="72" fill="${c}"/></g>`;}
+function wrap(inner){return `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">${inner}</svg>`;}
+const TINTS=["#f7cdd7","#cfe0f2","#dcd0f2","#f8e2a6","#d7ecc9"];
+function tintFor(p){let h=0;for(const ch of p.id)h=(h*31+ch.charCodeAt(0))>>>0;return [TINTS[h%TINTS.length],h];}
+
+function artFor(p,choices){
+  const pick=i=>choices[i]||p.slots[i]?.def;
+  const [tint,h]=tintFor(p);
+  const g=s=>`<g filter="url(#ink)" stroke="${INK}" stroke-width="2.2" stroke-linejoin="round" stroke-linecap="round">${s}</g>`;
+  let s="";
+  const A=p.art;
+  if(A.type==="stem"){
+    const vid=pick(0);
+    s=g(stem(100,110,96,192,-1)+head(vid,100,82,46));
+  } else if(A.type==="single"){
+    const vid=p.fixedVariant||pick(0);
+    s=g(thing(vid,100,100,1));
+  } else if(A.type==="bouquet"||A.type==="bundle"||A.type==="konvy"){
+    let heads=A.heads?A.heads.map(pick):[];
+    if(A.type==="konvy"){const b=pick(0);heads=b==="bq-rose"?["roses-01","roses-02","roses-03"]:["carnations-01","carnations-02","carnations-03"];}
+    const n=heads.length;const sc=A.type==="bouquet"?1:.86;
+    const pos=n===4?[[62,70],[100,52],[138,70],[100,92]]:[[66,74],[134,74],[100,56]];
+    const order=n===4?[0,2,1,3]:[0,1,2];
+    let st="",hd="";
+    order.forEach(i=>{const [x,y]=pos[i];st+=`<path d="M${x},${y+20} L100,170" stroke="${LEAF2}" stroke-width="4" fill="none"/>`;hd+=head(heads[i],x,y,30*sc+(n===4?0:4));});
+    const cone=`<path d="M38,96 L100,186 L162,96 Q100,120 38,96Z" fill="#c9a77a"/><path d="M58,98 L100,176 L80,104z" fill="#dcc29a" stroke="none"/>`+
+      `<path d="M86,150 q-22,-10 -26,6 q10,10 26,-2 M114,150 q22,-10 26,6 q-10,10 -26,-2" fill="${A.type==="bouquet"?"#f2a9bd":"#cfe0f2"}"/><circle cx="100" cy="150" r="7" fill="${A.type==="bouquet"?"#e3889f":"#8db4e2"}"/>`;
+    let extra="";
+    if(A.type==="bundle")extra=thing(pick(A.extra),156,152,.42);
+    if(A.type==="konvy")extra=thing("lipstick",150,150,.62);
+    const scaleG=A.type==="bouquet"?"":` transform="translate(-14 -6) scale(.96)"`;
+    s=g(`<g${scaleG}>${st}${hd}${cone}</g>${extra}`);
+  } else if(A.type==="stickers"){
+    s=g(thing(pick(0),76,92,.72)+thing(pick(1),128,116,.72));
+  }
+  return wrap(bg(h,tint)+`<g class="sway">${s}</g>`);
+}
+
+/* =========================================================
+   State
+   ========================================================= */
+const PHP=new Intl.NumberFormat("en-PH",{style:"currency",currency:"PHP",maximumFractionDigits:0});
+const peso=n=>PHP.format(n);
+const store={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+let cart=store.get("rs27-cart",[]);
+let filter="all";
+const byId=id=>PRODUCTS.find(p=>p.id===id);
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function fmtDate(iso,opts={weekday:"short",month:"short",day:"numeric"}){const [y,m,d]=iso.split("-").map(Number);return new Date(y,m-1,d).toLocaleDateString("en-US",opts);}
+function range(arr){return `${fmtDate(arr[0],{month:"short",day:"numeric"})}–${fmtDate(arr[arr.length-1],{month:"short",day:"numeric"})}`;}
+function announce(msg){const l=$("#live");l.textContent="";setTimeout(()=>l.textContent=msg,30);}
+function toast(msg,undo){
+  const t=$("#toast");t.replaceChildren();const s=document.createElement("span");s.textContent=msg;t.append(s);
+  if(undo){const b=document.createElement("button");b.className="undo";b.type="button";b.textContent="Undo";b.onclick=()=>{undo();t.hidden=true;announce("Restored to your cart");};t.append(b);}
+  t.hidden=false;announce(msg+(undo?". Undo is available.":""));clearTimeout(toast.t);toast.t=setTimeout(()=>t.hidden=true,undo?6000:2400);
+}
+function keepFocus(root,fn){
+  const a=document.activeElement;const inside=!!a&&root.contains(a);let q=null;
+  if(inside){const d=a.dataset;
+    q=a.id?"#"+a.id:d.v?`[data-slot="${d.slot}"][data-v="${d.v}"]`:d.q?`[data-q="${d.q}"]`:d.mode?`[data-mode="${d.mode}"]`:d.d?`[data-l="${d.l}"][data-d="${d.d}"]`:null;}
+  fn();
+  if(inside&&!root.contains(document.activeElement)){const n=q&&root.querySelector(q);(n||root.querySelector("button,input,select,a[href]"))?.focus({preventScroll:true});}
+}
+
+/* ---------- static bits ---------- */
+$("#dateList").innerHTML=`
+  <div><dt>Orders</dt><dd>Open now<small>Until ${fmtDate(CONFIG.orderClose,{weekday:"long",month:"long",day:"numeric"})}</small></dd></div>
+  <div><dt>Delivery</dt><dd>${range(CONFIG.deliveryDates)}, 2027<small>To your recipient’s classroom, Monday to Friday</small></dd></div>
+  <div><dt>Pickup</dt><dd>${range(CONFIG.pickupDates)}, 2027<small>At the Celadon booth, 8:00 AM to 5:00 PM</small></dd></div>`;
+$("#delWindow").textContent=`${range(CONFIG.deliveryDates)}, 2027`;
+$("#pickWindow").textContent=`${range(CONFIG.pickupDates)}, 2027`;
+$("#closeDate").textContent=fmtDate(CONFIG.orderClose,{weekday:"long",month:"long",day:"numeric"});
+$("#venueList").innerHTML=VENUES.map(([c,n])=>`<li><b>${c}</b> ${n}</li>`).join("");
+
+/* ---------- shop ---------- */
+function renderFilters(){
+  $("#filters").innerHTML=CATS.map(([k,l])=>`<button class="chip" data-f="${k}" aria-pressed="${filter===k}">${l}</button>`).join("");
+}
+const cardSel={};
+function swBg(v){return `${v.sw||v.c}${v.e?`;box-shadow:inset 0 0 0 4px ${v.e}`:""}`;}
+function dotsFor(p){
+  const s=p.slots[0];const cur=(cardSel[p.id]||[])[0]||s.def;
+  return `<div class="dots" role="group" aria-label="${esc(s.label)}">${s.opts.map(o=>`<button class="dot" data-dot="${p.id}" data-v="${o}" aria-pressed="${cur===o}" aria-label="${esc(V[o].n)}" title="${esc(V[o].n)}" style="background:${swBg(V[o])}"></button>`).join("")}</div>`;
+}
+function renderGrid(animate){
+  const list=PRODUCTS.filter(p=>filter==="all"||p.cat===filter);
+  const g=$("#grid");g.classList.toggle("enter",!!animate);
+  g.innerHTML=list.map((p,i)=>{
+    const single=p.slots.length===1&&p.slots[0].opts.length>1&&!p.fixed;
+    const sub=single?dotsFor(p):`<span class="sub">${p.slots.length>1?`You pick ${p.slots.length} items`:p.slots.length?`${p.slots[0].opts.length} options`:"One design"}</span>`;
+    return `<article class="card" style="--i:${Math.min(i,12)}">
+      <button class="art" data-p="${p.id}" aria-label="See ${esc(p.name)}">${artFor(p,cardSel[p.id]||[])}${p.tag?`<span class="tag">${esc(p.tag)}</span>`:""}</button>
+      <div class="body"><span class="name">${esc(p.name)}</span>${sub}
+      <div class="row"><span class="price">${peso(p.price)}</span><button class="go" data-p="${p.id}">Choose</button></div></div></article>`;}).join("");
+}
+function setFilter(f,animate){if(f===filter)return;filter=f;renderFilters();renderGrid(animate);}
+$("#filters").addEventListener("click",e=>{const b=e.target.closest("[data-f]");if(!b||b.dataset.f===filter)return;
+  setFilter(b.dataset.f,true);try{history.replaceState(null,"",b.dataset.f==="all"?"#shop":"#"+b.dataset.f);}catch(err){}});
+function filterFromHash(){const h=location.hash.slice(1);if(CATS.some(([k])=>k===h&&k!=="all")){setFilter(h,false);$("#shop").scrollIntoView();}}
+addEventListener("hashchange",filterFromHash);
+$("#grid").addEventListener("click",e=>{
+  const d=e.target.closest("[data-dot]");
+  if(d){const p=byId(d.dataset.dot);cardSel[p.id]=[d.dataset.v];
+    const card=d.closest(".card"),art=card.querySelector(".art");
+    art.querySelector("svg").outerHTML=artFor(p,cardSel[p.id]);
+    card.querySelectorAll(".dot").forEach(x=>x.setAttribute("aria-pressed",x===d));
+    art.classList.remove("recolor");void art.offsetWidth;art.classList.add("recolor");return;}
+  const b=e.target.closest("[data-p]");if(b)openProduct(b.dataset.p);
+});
+
+/* ---------- product sheet ---------- */
+let pdState=null;
+function openProduct(id){
+  const p=byId(id);const pre=cardSel[id]||[];pdState={p,choices:p.slots.map((s,i)=>pre[i]||s.def),qty:1};
+  renderProduct();show("pd",true);
+}
+function renderProduct(){
+  const {p,choices,qty}=pdState;
+  const swatch=vid=>{const v=V[vid];return `<i style="background:${v.sw||v.c}${v.e?`;box-shadow:inset 0 0 0 4px ${v.e}`:""}"></i>`;};
+  const slotsHtml=p.slots.map((s,i)=>`<div class="slot"><span class="slot-label">${esc(s.label)}: <span style="font-weight:600;color:var(--muted)">${esc(V[choices[i]].n)}</span></span>
+     <div class="swatches" role="group" aria-label="${esc(s.label)}">${s.opts.map(o=>`<button class="sw" data-slot="${i}" data-v="${o}" aria-pressed="${choices[i]===o}">${swatch(o)}${esc(V[o].n)}</button>`).join("")}</div></div>`).join("");
+  $("#pdPaper").innerHTML=`<button class="x" data-close="pd" aria-label="Close">&times;</button>
+    <div class="pd"><div class="art">${artFor(p,choices)}</div>
+    <div class="info"><div><h2>${esc(p.name)}</h2><div class="price" style="margin-top:6px">${peso(p.price)}</div></div>
+      <p class="desc">${esc(p.desc)}</p>${slotsHtml}${p.fixed?`<p class="fixed-note">${esc(p.fixed)}</p>`:""}
+      <div class="buy"><div class="qty" style="margin:0"><button data-q="-1" aria-label="Fewer">−</button><span>${qty}</span><button data-q="1" aria-label="More">+</button></div>
+      <button class="btn solid" id="addBtn">Add to Cart (${peso(p.price*qty)})</button></div></div></div>`;
+}
+$("#pdPaper").addEventListener("click",e=>{
+  const sw=e.target.closest(".sw");if(sw){pdState.choices[+sw.dataset.slot]=sw.dataset.v;keepFocus($("#pdPaper"),renderProduct);return;}
+  const q=e.target.closest("[data-q]");if(q){pdState.qty=Math.max(1,Math.min(20,pdState.qty+ +q.dataset.q));keepFocus($("#pdPaper"),renderProduct);return;}
+  if(e.target.closest("#addBtn")){const r=$("#pdPaper .art svg").getBoundingClientRect();addToCart(pdState.p,pdState.choices,pdState.qty);show("pd",false);fly(r,artFor(pdState.p,pdState.choices));return;}
+  if(e.target.closest("[data-close]"))show("pd",false);
+});
+
+/* ---------- cart ---------- */
+function lineKey(id,ch){return id+"|"+ch.join(",");}
+function addToCart(p,choices,qty){
+  const key=lineKey(p.id,choices);const ex=cart.find(l=>l.key===key);
+  if(ex)ex.qty+=qty;else cart.push({key,id:p.id,choices:[...choices],qty});
+  saveCart();toast(`Added ${p.name} to your cart`);
+}
+function removeLine(i){
+  const [gone]=cart.splice(i,1);keepFocus($("#cart"),saveCart);
+  toast(`Removed ${byId(gone.id).name}`,()=>{cart.splice(Math.min(i,cart.length),0,gone);saveCart();});
+}
+function saveCart(){store.set("rs27-cart",cart);renderCart();}
+function cartTotal(){return cart.reduce((s,l)=>s+byId(l.id).price*l.qty,0);}
+function choiceText(l){const p=byId(l.id);return p.slots.map((s,i)=>p.slots.length===1?V[l.choices[i]].n:`${s.label}: ${V[l.choices[i]].n}`).join("; ")+(p.fixed?(p.slots.length?"; ":"")+"with makeup kit":"");}
+function renderCart(){
+  const n=cart.reduce((s,l)=>s+l.qty,0);$("#cartCount").textContent=n;
+  if(!cart.length){
+    $("#lines").innerHTML=`<div class="empty"><img src="img/boat.jpg" alt="" width="210" height="149"><p><b style="color:var(--ink)">Nothing here yet.</b><br>Your paper boat is waiting for some flowers.</p><a class="btn ghost" href="#shop" data-close="cart" style="margin-top:14px">Browse the Stall</a></div>`;
+    $("#totals").innerHTML="";return;
+  }
+  $("#lines").innerHTML=cart.map((l,i)=>{const p=byId(l.id);return `<div class="line"><div class="thumb">${artFor(p,l.choices)}</div>
+    <div style="min-width:0"><div class="ln">${esc(p.name)}</div><div class="lc">${esc(choiceText(l))}</div>
+    <div class="qty"><button data-l="${i}" data-d="-1" aria-label="Fewer">−</button><span>${l.qty}</span><button data-l="${i}" data-d="1" aria-label="More">+</button></div></div>
+    <div><div class="lp">${peso(p.price*l.qty)}</div><button class="remove" data-rm="${i}">Remove</button></div></div>`;}).join("");
+  $("#totals").innerHTML=`<div class="t"><span>Total</span><span>${peso(cartTotal())}</span></div><button class="btn solid" id="toCheckout" style="justify-content:center">Check Out</button>`;
+}
+$("#cart").addEventListener("click",e=>{
+  const d=e.target.closest("[data-d]");
+  if(d){const i=+d.dataset.l,l=cart[i];const name=byId(l.id).name;
+    if(l.qty+ +d.dataset.d<1){removeLine(i);return;}
+    l.qty+= +d.dataset.d;keepFocus($("#cart"),saveCart);announce(`${name}: ${l.qty} in cart. Total ${peso(cartTotal())}`);return;}
+  const rm=e.target.closest("[data-rm]");if(rm){removeLine(+rm.dataset.rm);return;}
+  if(e.target.closest("#toCheckout")){show("cart",false);openCheckout();return;}
+  if(e.target.closest("[data-close]"))show("cart",false);
+});
+$("#openCart").onclick=()=>show("cart",true);
+$("#closeCart").onclick=()=>show("cart",false);
+
+const reduced=()=>matchMedia("(prefers-reduced-motion: reduce)").matches;
+function bump(){const b=$("#openCart");b.classList.remove("bump");void b.offsetWidth;b.classList.add("bump");}
+function fly(r,html){
+  if(reduced()||!r.width){bump();return;}
+  const size=Math.min(r.width,r.height,240);const cx=r.left+r.width/2,cy=r.top+r.height/2;
+  const el=document.createElement("div");el.className="flyer";el.innerHTML=html;
+  Object.assign(el.style,{left:cx-size/2+"px",top:cy-size/2+"px",width:size+"px",height:size+"px"});
+  document.body.appendChild(el);
+  const t=$("#openCart").getBoundingClientRect();const dx=t.left+t.width/2-cx,dy=t.top+t.height/2-cy;
+  el.animate([{transform:"translate(0,0) scale(1) rotate(0)"},
+    {transform:`translate(${dx*.45}px,${dy*.45-90}px) scale(.55) rotate(-14deg)`,offset:.5},
+    {transform:`translate(${dx}px,${dy}px) scale(.08) rotate(-28deg)`,opacity:.5}],
+    {duration:800,easing:"cubic-bezier(.45,0,.55,1)"}).onfinish=()=>{el.remove();bump();};
+}
+
+/* ---------- overlay helper ---------- */
+const OVER={cart:["#cartScrim","#cart"],pd:["#pdScrim","#pdSheet"],co:["#coScrim","#coSheet"]};
+let opener=null;
+function show(k,on){
+  const [s,p]=OVER[k];
+  if(on&&!opener)opener=document.activeElement;
+  $(s).hidden=!on;$(p).hidden=!on;
+  const any=Object.values(OVER).some(([a])=>!$(a).hidden);
+  document.body.style.overflow=any?"hidden":"";
+  ["header.top","main","footer",".skip"].forEach(sel=>{const n=$(sel);if(n)n.inert=any;});
+  if(on){const fx=$(p).querySelector("button,input,select");fx&&fx.focus({preventScroll:true});}
+  else if(!any&&opener){const o=opener;opener=null;if(document.contains(o))o.focus({preventScroll:true});}
+}
+Object.entries(OVER).forEach(([k,[s,p]])=>{$(s).onclick=()=>show(k,false);$(p).addEventListener("click",e=>{if(e.target===$(p))show(k,false);});});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")Object.keys(OVER).forEach(k=>{if(!$(OVER[k][0]).hidden)show(k,false);});});
+
+/* =========================================================
+   Checkout
+   ========================================================= */
+const TIMES=[];for(let h=8;h<=17;h++)for(const m of [0,30]){if(h===17&&m)continue;TIMES.push(`${((h+11)%12)+1}:${m?"30":"00"} ${h<12?"AM":"PM"}`);}
+let co;
+function openCheckout(){
+  if(!cart.length)return;
+  co=co||{step:0,mode:"deliver",d:store.get("rs27-buyer",{})};
+  co.step=0;co.err="";renderCheckout();show("co",true);
+}
+const STEPS_DELIVER=["Your Details","Recipient & Message","Delivery Schedule","Payment","Review"];
+const NEXT_LABEL={"Recipient & Message":"Continue to Message","Delivery Schedule":"Continue to Schedule","Pickup":"Continue to Pickup","Payment":"Continue to Payment","Review":"Review Order"};
+const STEPS_PICKUP=["Your Details","Pickup","Payment","Review"];
+function stepList(){return co.mode==="deliver"?STEPS_DELIVER:STEPS_PICKUP;}
+function val(id){return esc(co.d[id]??"");}
+function field(id,label,{type="text",ph="",full=false,hint="",opt=false,attrs=""}={}){
+  if(!/autocomplete=/.test(attrs))attrs+=' autocomplete="off"';
+  return `<div class="field${full?" full":""}"><label for="${id}">${label}${opt?" <small>(optional)</small>":""}</label><input id="${id}" name="${id}" type="${type}" placeholder="${ph}" value="${val(id)}" ${attrs}>${hint?`<span class="hint">${hint}</span>`:""}</div>`;
+}
+function select(id,label,options,{full=false}={}){
+  return `<div class="field${full?" full":""}"><label for="${id}">${label}</label><select id="${id}" name="${id}" autocomplete="off"><option value="">Select…</option>${options.map(([v,l])=>`<option value="${esc(v)}"${co.d[id]===v?" selected":""}>${esc(l)}</option>`).join("")}</select></div>`;
+}
+const dateOpts=a=>a.map(d=>[d,fmtDate(d,{weekday:"long",month:"long",day:"numeric"})]);
+const venueOpts=VENUES.map(([c,n])=>[`${c} - ${n}`,`${c} – ${n}`]);
+const timeOpts=TIMES.map(t=>[t,t]);
+
+function stepBody(name){
+  switch(name){
+    case "Your Details":return `<div class="form">
+      ${field("buyerName","Full name",{ph:"Juan Dela Cruz…",full:true,attrs:'autocomplete="name"'})}
+      ${field("idNumber","ID number",{ph:"231234…",attrs:'inputmode="numeric" spellcheck="false"'})}
+      ${field("buyerPhone","Mobile number",{ph:"0917 123 4567…",type:"tel",attrs:'autocomplete="tel"'})}
+      ${field("buyerEmail","School email",{ph:"your.email@student.ateneo.edu…",type:"email",full:true,attrs:'autocomplete="email" spellcheck="false"'})}
+      ${field("buyerFb","Facebook profile link",{ph:"https://www.facebook.com/yourprofile…",type:"url",attrs:'autocomplete="url" spellcheck="false"',full:true,hint:"We’ll message you here about your order."})}
+      <div class="field full"><span style="font-weight:800;font-size:14px;color:var(--ink)">How should we get it to them?</span>
+        <div class="toggle" role="group" aria-label="Delivery or pickup">
+          <button type="button" data-mode="deliver" aria-pressed="${co.mode==="deliver"}"><b>Deliver to Class</b><span>Our runners bring it to their classroom</span></button>
+          <button type="button" data-mode="pickup" aria-pressed="${co.mode==="pickup"}"><b>Pick Up at Booth</b><span>You collect it and hand it over yourself</span></button>
+        </div></div></div>`;
+    case "Recipient & Message":return `<div class="msg-wrap"><div class="form">
+      ${field("recName","Recipient’s full name",{ph:"Miguel Santos…",full:true})}
+      ${field("recPhone","Recipient’s mobile number",{ph:"0917 123 4567…",type:"tel"})}
+      ${field("recFb","Their Facebook link",{ph:"https://www.facebook.com/…",type:"url",attrs:'spellcheck="false"',opt:true})}
+      <div class="field full"><label for="message">Message for the card</label><textarea id="message" name="message" maxlength="300" placeholder="Write something sweet…">${val("message")}</textarea><span class="hint"><span id="msgCount">${(co.d.message||"").length}</span>/300 characters</span></div>
+      <label class="check full"><input type="checkbox" id="anon" ${co.d.anon?"checked":""}> <span><b>Send anonymously.</b> We’ll leave your name off the card.</span></label>
+      ${field("notes","Notes for our team",{ph:"e.g. build the lego flower, deliver after class…",full:true,opt:true})}</div>
+      <div><p class="notecard-label">This is how their card will look</p>
+        <div class="notecard"><svg class="stamp" viewBox="0 0 100 100" aria-hidden="true"><g filter="url(#ink)" stroke="${INK}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">${head("roses-03",50,52,32)}</g></svg>
+        <div class="to" id="ncTo"></div><div class="nbody" id="ncBody"></div><div class="from" id="ncFrom"></div></div></div></div>`;
+    case "Delivery Schedule":return `<p style="margin-bottom:14px;font-size:15px">Give us two of your recipient’s classes. We’ll try the first one, then the backup.</p>
+      ${["1","2"].map(n=>`<fieldset class="slotbox" style="margin:0 0 14px"><legend>${n==="1"?"First choice":"Backup"}</legend><div class="form">
+        ${select("date"+n,"Date",dateOpts(CONFIG.deliveryDates))}${select("time"+n,"Class time",timeOpts)}
+        ${select("venue"+n,"Building",venueOpts)}${field("room"+n,"Room",{ph:n==="1"?"e.g. 202…":"e.g. 301…"})}</div></fieldset>`).join("")}`;
+    case "Pickup":return `<div class="form">${select("pickDate","Pickup date",dateOpts(CONFIG.pickupDates))}${select("pickTime","Pickup time",timeOpts)}
+      ${field("notes","Notes for our team",{ph:"e.g. build the lego flower…",full:true,opt:true})}</div>`;
+    case "Payment":{
+      const qr=CONFIG.qrImage?`<img src="${esc(CONFIG.qrImage)}" alt="GCash QR code" style="width:100%;height:100%;object-fit:contain">`:fakeQR();
+      return `<div class="pay"><div class="qr">${qr}</div><div>
+        <p>Send exactly <b style="color:var(--ink);font-size:18px">${peso(cartTotal())}</b> through GCash, then fill in the details below.</p>
+        <div class="copyrow"><div style="min-width:0"><div style="font-size:12.5px;color:var(--muted)">${esc(CONFIG.gcashName)}</div><code id="gnum" translate="no">${esc(CONFIG.gcashNumber)}</code></div><button type="button" class="mini" id="copyNum">Copy</button></div>
+        <div class="form" style="margin-top:16px">
+          ${field("gcashRef","GCash reference number",{ph:"13-digit number…",full:true,attrs:'inputmode="numeric" spellcheck="false" maxlength="16"'})}
+          <div class="field full"><label for="proof">Screenshot of your receipt</label><input id="proof" type="file" accept="image/*"><span class="hint">PNG or JPG of the GCash confirmation screen.</span>${co.proof?`<img class="proof" src="${co.proof}" alt="Your receipt screenshot">`:""}</div>
+        </div></div></div>`;}
+    case "Review":{
+      const d=co.d;
+      const items=cart.map(l=>{const p=byId(l.id);return `<tr><td><b>${l.qty}× ${esc(p.name)}</b><br><span style="color:var(--muted)">${esc(choiceText(l))}</span></td><td>${peso(p.price*l.qty)}</td></tr>`;}).join("");
+      const where=co.mode==="deliver"
+        ?`<h3>Delivery to ${esc(d.recName)}${d.anon?" (anonymous)":""}</h3><ul><li>${esc(fmtDate(d.date1))} at ${esc(d.time1)}, ${esc(d.venue1.split(" - ")[0])} ${esc(d.room1)}</li><li>Backup: ${esc(fmtDate(d.date2))} at ${esc(d.time2)}, ${esc(d.venue2.split(" - ")[0])} ${esc(d.room2)}</li></ul>${d.message?`<p style="margin-top:8px"><i>“${esc(d.message)}”</i></p>`:""}`
+        :`<h3>Booth Pickup</h3><p>${esc(fmtDate(d.pickDate,{weekday:"long",month:"long",day:"numeric"}))} at ${esc(d.pickTime)}</p>`;
+      return `<div class="review"><div><h3>Your Order</h3><table class="receipt">${items}<tr class="total"><td>Total</td><td>${peso(cartTotal())}</td></tr></table></div>
+        <div style="display:flex;flex-direction:column;gap:14px"><div><h3>From</h3><p>${esc(d.buyerName)}, ID ${esc(d.idNumber)}<br>${esc(d.buyerEmail)}<br>${esc(d.buyerPhone)}</p></div><div>${where}</div><div><h3>Payment</h3><p>GCash ref. ${esc(d.gcashRef)}</p></div></div></div>`;}
+  }
+}
+function fakeQR(){ // decorative placeholder until the real QR is added
+  let s="";let r=7;for(let y=0;y<25;y++)for(let x=0;x<25;x++){r=(r*1103515245+12345)&0x7fffffff;const fin=(x<7&&y<7)||(x>17&&y<7)||(x<7&&y>17);if(!fin&&r%3===0)s+=`<rect x="${x}" y="${y}" width="1" height="1"/>`;}
+  const fp=(x,y)=>`<rect x="${x+.5}" y="${y+.5}" width="6" height="6" fill="none" stroke="#2b1c14" stroke-width="1"/><rect x="${x+2}" y="${y+2}" width="3" height="3"/>`;
+  return `<svg viewBox="0 0 25 25" fill="#2b1c14" role="img" aria-label="QR code placeholder">${s}${fp(0,0)}${fp(18,0)}${fp(0,18)}</svg>`;
+}
+function renderCheckout(){
+  const steps=stepList();const name=steps[co.step];const last=co.step===steps.length-1;
+  $("#coPaper").innerHTML=`<button class="x" data-close="co" aria-label="Close checkout">&times;</button>
+   <form class="co" id="coForm" novalidate><h2>${name==="Review"?"Check Everything":"Checkout"}</h2>
+   <ol class="progress">${steps.map((s,i)=>`<li class="${i<co.step?"done":i===co.step?"on":""}">${s}</li>`).join("")}</ol>
+   ${stepBody(name)}
+   <p class="err" role="alert">${esc(co.err||"")}</p>
+   <div class="co-foot"><button type="button" class="btn ghost" id="coBack">${co.step?"Back":"Back to Cart"}</button>
+   <button type="submit" class="btn solid">${last?`Place Order (${peso(cartTotal())})`:NEXT_LABEL[steps[co.step+1]]}</button></div></form>`;
+  $("#coSheet").scrollTop=0;
+  updateNote();
+}
+function updateNote(){
+  if(!$("#ncTo"))return;
+  const rec=($("#recName")?.value||"").trim(),msg=($("#message")?.value||"").trim(),anon=$("#anon")?.checked;
+  $("#ncTo").textContent=`To ${rec?rec.split(" ")[0]:"your someone"},`;
+  const b=$("#ncBody");b.textContent=msg||"Your message shows up here as you type.";b.classList.toggle("ph",!msg);
+  $("#ncFrom").textContent=anon?"From someone thinking of you":`From ${(co.d.buyerName||"you").split(" ")[0]}`;
+}
+function collect(){
+  $("#coPaper").querySelectorAll("input[name],select[name],textarea[name]").forEach(el=>co.d[el.name]=el.value.trim());
+  const a=$("#anon");if(a)co.d.anon=a.checked;
+}
+const RULES={
+  "Your Details":[["buyerName","Enter your full name."],["idNumber","Enter your ID number.",v=>/^\d{6}$/.test(v),"Your ID number should be 6 digits."],
+    ["buyerPhone","Enter your mobile number.",v=>/^(09|\+639)\d{9}$/.test(v.replace(/[\s-]/g,"")),"Use an 11-digit number starting with 09."],
+    ["buyerEmail","Enter your school email.",v=>/^[^@\s]+@([a-z]+\.)?ateneo\.edu$/i.test(v),"Use your @student.ateneo.edu or @ateneo.edu email."],["buyerFb","Add your Facebook link so we can message you."]],
+  "Recipient & Message":[["recName","Enter your recipient’s name."],["recPhone","Enter your recipient’s mobile number.",v=>/^(09|\+639)\d{9}$/.test(v.replace(/[\s-]/g,"")),"Use an 11-digit number starting with 09."]],
+  "Delivery Schedule":[["date1","Pick a date for the first choice."],["time1","Pick a time for the first choice."],["venue1","Pick a building for the first choice."],["room1","Enter a room for the first choice."],
+    ["date2","Pick a date for the backup."],["time2","Pick a time for the backup."],["venue2","Pick a building for the backup."],["room2","Enter a room for the backup."]],
+  "Pickup":[["pickDate","Pick a pickup date."],["pickTime","Pick a pickup time."]],
+  "Payment":[["gcashRef","Enter your GCash reference number.",v=>/^\d{10,16}$/.test(v.replace(/\s/g,"")),"The reference number should be 10 to 16 digits."]],
+};
+function fieldError(id,msg){
+  const el=document.getElementById(id);if(!el)return null;const f=el.closest(".field");f.classList.add("bad");
+  let m=f.querySelector(".ferr");if(!m){m=document.createElement("span");m.className="ferr";m.id="err-"+id;f.append(m);}
+  m.textContent=msg;el.setAttribute("aria-invalid","true");el.setAttribute("aria-describedby",m.id);return el;
+}
+function clearFieldError(el){
+  const f=el.closest(".field");if(!f)return;f.classList.remove("bad");f.querySelector(".ferr")?.remove();
+  el.removeAttribute("aria-invalid");el.removeAttribute("aria-describedby");
+}
+function validate(name){
+  const bad=[];
+  for(const [id,empty,test,badMsg] of (RULES[name]||[])){
+    const v=co.d[id]||"";
+    if(!v||(test&&!test(v))){const el=fieldError(id,!v?empty:badMsg);if(el)bad.push(el);}
+  }
+  if(name==="Payment"&&!co.proof){const el=fieldError("proof","Upload a screenshot of your GCash receipt.");if(el)bad.push(el);}
+  if(name==="Delivery Schedule"&&co.d.date1&&co.d.date1===co.d.date2&&co.d.time1&&co.d.time1===co.d.time2){const el=fieldError("time2","Pick a different date or time from your first choice.");if(el)bad.push(el);}
+  co.err="";
+  if(bad.length){bad[0].focus();announce(`${bad.length} ${bad.length===1?"field needs":"fields need"} fixing`);return false;}
+  return true;
+}
+$("#coPaper").addEventListener("submit",async e=>{
+  e.preventDefault();collect();
+  const steps=stepList();const name=steps[co.step];
+  if(!validate(name)){$("#coPaper .err").textContent=co.err;return;}
+  store.set("rs27-buyer",{buyerName:co.d.buyerName,idNumber:co.d.idNumber,buyerPhone:co.d.buyerPhone,buyerEmail:co.d.buyerEmail,buyerFb:co.d.buyerFb});
+  if(co.step<steps.length-1){co.step++;renderCheckout();$("#coPaper h2").setAttribute("tabindex","-1");$("#coPaper h2").focus({preventScroll:true});return;}
+  if(co.busy)return;
+  const btn=$("#coPaper button[type=submit]");co.busy=true;btn.disabled=true;btn.textContent="Placing Order…";
+  const ok=await placeOrder();co.busy=false;
+  if(!ok&&document.contains(btn)){btn.disabled=false;btn.textContent=`Place Order (${peso(cartTotal())})`;}
+});
+$("#coPaper").addEventListener("click",e=>{
+  const m=e.target.closest("[data-mode]");if(m){collect();co.mode=m.dataset.mode;keepFocus($("#coPaper"),renderCheckout);return;}
+  if(e.target.closest("#coBack")){collect();co.err="";if(co.step===0){show("co",false);show("cart",true);}else{co.step--;renderCheckout();}return;}
+  if(e.target.closest("#copyNum")){const t=CONFIG.gcashNumber.replace(/\s/g,"");
+    Promise.resolve().then(()=>navigator.clipboard.writeText(t)).then(()=>toast("Number copied")).catch(()=>{const r=document.createRange();r.selectNodeContents($("#gnum"));const s=getSelection();s.removeAllRanges();s.addRange(r);toast("Number selected. Copy it from here.");});return;}
+  if(e.target.closest("[data-close]"))show("co",false);
+});
+$("#coPaper").addEventListener("input",e=>{
+  clearFieldError(e.target);
+  if(e.target.id==="message")$("#msgCount").textContent=e.target.value.length;
+  updateNote();
+});
+$("#coPaper").addEventListener("change",e=>{
+  if(e.target.id==="anon"){updateNote();return;}
+  if(e.target.matches("select"))clearFieldError(e.target);
+  if(e.target.id!=="proof"||!e.target.files[0])return;
+  // shrink the screenshot to keep uploads quick on mobile data
+  const r=new FileReader();
+  r.onload=()=>{const img=new Image();
+    img.onload=()=>{const k=Math.min(1,1400/Math.max(img.width,img.height));const cv=document.createElement("canvas");
+      cv.width=Math.round(img.width*k);cv.height=Math.round(img.height*k);const g=cv.getContext("2d");g.fillStyle="#fff";g.fillRect(0,0,cv.width,cv.height);g.drawImage(img,0,0,cv.width,cv.height);
+      collect();co.proof=cv.toDataURL("image/jpeg",.82);renderCheckout();};
+    img.onerror=()=>fieldError("proof","That file isn’t an image. Upload a PNG or JPG screenshot of your GCash receipt.");
+    img.src=r.result;};
+  r.readAsDataURL(e.target.files[0]);
+});
+
+addEventListener("beforeunload",e=>{if(!$("#coSheet").hidden&&co&&co.step>0&&!co.busy){e.preventDefault();e.returnValue="";}});
+async function placeOrder(){
+  let code="DEMO-"+Math.random().toString(36).slice(2,6).toUpperCase();
+  const order={placedAt:new Date().toISOString(),deliveryType:co.mode,total:cartTotal(),...co.d,
+    items:cart.map(l=>({id:l.id,name:byId(l.id).name,qty:l.qty,price:byId(l.id).price,choices:l.choices.map(c=>V[c].n)}))};
+  if(CONFIG.orderEndpoint){
+    const fail=msg=>{co.err=msg;$("#coPaper .err").textContent=msg;return false;};
+    let res;
+    try{
+      // text/plain keeps this a "simple" request, which Apps Script accepts without a CORS preflight
+      res=await fetch(CONFIG.orderEndpoint,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({...order,proof:co.proof})});
+    }catch(err){return fail("We couldn’t reach the order system. Check your internet connection, then tap Place Order again.");}
+    let j=null;try{j=await res.json();}catch(err){}
+    if(!j||!j.ok)return fail(`Your order wasn’t saved${j&&j.error?`: ${j.error}`:"."} Tap Place Order to try again, or message Celadon on Facebook if it keeps happening.`);
+    code=j.code;
+  }
+  order.code=code;
+  const past=store.get("rs27-orders",[]);past.push(order);store.set("rs27-orders",past);
+  const when=co.mode==="deliver"?`We’ll bring it to ${esc(co.d.recName)} on ${esc(fmtDate(co.d.date1,{weekday:"long",month:"long",day:"numeric"}))}.`:`See you at the booth on ${esc(fmtDate(co.d.pickDate,{weekday:"long",month:"long",day:"numeric"}))} at ${esc(co.d.pickTime)}.`;
+  $("#coPaper").innerHTML=`<button class="x" data-close="co" aria-label="Close">&times;</button><div class="done">
+    <div class="boatbox"><img src="img/boat.jpg" alt="" width="210" height="149"></div><h2>Your Order Is on Its Way</h2>
+    <div class="code">${code}</div><p>${when} We’ll confirm your payment and message you on Facebook. Keep this code for any questions.</p>
+    <button class="btn solid" data-close="co" style="margin-top:20px">Back to the Stall</button></div>`;
+  cart=[];saveCart();co.proof=null;co.step=0;
+  $("#coPaper .done h2").setAttribute("tabindex","-1");$("#coPaper .done h2").focus({preventScroll:true});
+  ["recName","recPhone","recFb","message","anon","notes","date1","time1","venue1","room1","date2","time2","venue2","room2","pickDate","pickTime","gcashRef"].forEach(k=>delete co.d[k]);
+  return true;
+}
+
+/* ---------- step icons ---------- */
+const ICONS={
+  rose:head("roses-03",50,46,30)+`<path d="M50,76 L50,96" stroke="${LEAF2}" stroke-width="4" fill="none"/>`,
+  note:`<rect x="16" y="26" width="68" height="50" rx="4" fill="#fffdf4"/><path d="M16,30 L50,54 L84,30" fill="none"/><path d="M50,72 c-9,-6 -9,-15 -2,-15 c2,0 2,2 2,3 c0,-1 0,-3 2,-3 c7,0 7,9 -2,15z" fill="#e46a7e"/>`,
+  boat:`<path d="M30,58 L50,24 L70,58 Z" fill="#dcc29a"/><path d="M12,58 L88,58 L75,76 L25,76 Z" fill="#c9a77a"/><path d="M6,86 q11,-7 22,0 t22,0 t22,0 t22,0" stroke="#4f7fbf" fill="none"/>`,
+  phone:`<rect x="30" y="10" width="40" height="80" rx="9" fill="#fdf7e6"/><rect x="38" y="28" width="24" height="24" fill="#fff"/><rect x="41" y="31" width="7" height="7" fill="${INK}"/><rect x="52" y="42" width="7" height="7" fill="${INK}"/><rect x="41" y="44" width="5" height="5" fill="${INK}"/><rect x="53" y="31" width="5" height="5" fill="${INK}"/><path d="M42,66 l5,5 l11,-11" stroke="#7fae6a" stroke-width="3.5" fill="none"/>`
+};
+document.querySelectorAll("[data-ico]").forEach(s=>s.innerHTML=`<g filter="url(#ink)" stroke="${INK}" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">${ICONS[s.dataset.ico]}</g>`);
+
+/* ---------- drifting petals over the hero ---------- */
+(function(){
+  const c=$("#petals");if(!c||reduced())return;const ctx=c.getContext("2d");const hero=$(".hero");
+  const cols=["#f2a9bd","#e3889f","#f6bfcd","#c4a8e2","#f8e2a6","#8db4e2"];let W=0,H=0;
+  function size(){const d=Math.min(2,devicePixelRatio||1);W=c.clientWidth;H=c.clientHeight;c.width=W*d;c.height=H*d;ctx.setTransform(d,0,0,d,0,0);}
+  size();addEventListener("resize",size);
+  const mk=init=>({x:Math.random()*W,y:init?Math.random()*H:-16,r:4+Math.random()*6,vy:.25+Math.random()*.45,sw:Math.random()*6.3,ss:.01+Math.random()*.012,rot:Math.random()*6.3,vr:(Math.random()-.5)*.03,c:cols[Math.random()*cols.length|0]});
+  const P=Array.from({length:W<640?7:15},()=>mk(true));
+  let visible=true,running=false;
+  new IntersectionObserver(([e])=>{visible=e.isIntersecting;if(visible&&!running){running=true;requestAnimationFrame(tick);}}).observe(hero);
+  function tick(){
+    if(!visible){running=false;return;}
+    ctx.clearRect(0,0,W,H);
+    for(const p of P){
+      p.y+=p.vy;p.sw+=p.ss;p.x+=Math.sin(p.sw)*.55;p.rot+=p.vr;if(p.y>H+16)Object.assign(p,mk(false));
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.scale(1,.55+.45*Math.sin(p.sw*1.7));
+      ctx.globalAlpha=.8;ctx.fillStyle=p.c;ctx.beginPath();ctx.moveTo(0,-p.r);
+      ctx.bezierCurveTo(p.r,-p.r*.6,p.r*.7,p.r*.8,0,p.r);ctx.bezierCurveTo(-p.r*.7,p.r*.8,-p.r,-p.r*.6,0,-p.r);
+      ctx.fill();ctx.strokeStyle="rgba(74,44,29,.4)";ctx.lineWidth=1;ctx.stroke();ctx.restore();
+    }
+    requestAnimationFrame(tick);
+  }
+})();
+
+/* ---------- boot ---------- */
+renderFilters();renderGrid();renderCart();filterFromHash();
+</script>
+
+</body>
+</html>
